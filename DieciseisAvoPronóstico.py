@@ -20,8 +20,9 @@ BASE_ELO   = 1500
 BASE_POT   = 1850   
 PRIOR_MEAN = 1.3    
 PRIOR_PJ   = 3.0    
-PESO_ELO   = 0.2
-PESO_STATS = 0.8
+PESO_ELO_MAX   = 0.65
+PESO_ELO_MIN   = 0.3
+PESO_STATS = 1-PESO_ELO_MAX
 
 ANFITRIONES_2026 = {"México", "Mexico", "Canadá", "Canada", "Estados Unidos", "USA", "EEUU"}
 
@@ -250,8 +251,8 @@ def calcular_probabilidades(t1, t2, eliminatoria=True):
     elo1 = teams_base.get(t1, [BASE_ELO])[0]
     elo2 = teams_base.get(t2, [BASE_ELO])[0]
     
-    if t1 in ANFITRIONES_2026: elo1 += 90
-    if t2 in ANFITRIONES_2026: elo2 += 90
+    if t1 in ANFITRIONES_2026: elo1 += 80
+    if t2 in ANFITRIONES_2026: elo2 += 80
     
     loc_atk1, loc_def1 = (1.08, 0.93) if t1 in ANFITRIONES_2026 else (1.0, 1.0)
     loc_atk2, loc_def2 = (1.08, 0.93) if t2 in ANFITRIONES_2026 else (1.0, 1.0)
@@ -292,9 +293,17 @@ def calcular_probabilidades(t1, t2, eliminatoria=True):
     dist_elo   = generar_distribucion(lam1_elo, lam2_elo)
 
     # 3. Ensamble de probabilidades (Ponderación final)
-    prob_90 = {k: (PESO_STATS * dist_stats[k] + PESO_ELO * dist_elo[k]) 
-               for k in dist_stats.keys()}
-            
+    d = abs(delta_elo)
+    if d >= 300:
+        w_elo = PESO_ELO_MAX
+    else:
+        w_elo = PESO_ELO_MIN + (PESO_ELO_MAX -  PESO_ELO_MIN) * (d / 300.0)
+    # Aseguramos que esté dentro del rango (por si acaso)
+    w_elo = max(PESO_ELO_MIN, min(PESO_ELO_MAX, w_elo))
+
+    prob_90 = {k: ((1 - w_elo) * dist_stats[k] + w_elo * dist_elo[k]) 
+            for k in dist_stats.keys()}
+                
 
 
     top_90 = sorted(prob_90.items(), key=lambda x: x[1], reverse=True)[:5]
@@ -311,11 +320,11 @@ def calcular_probabilidades(t1, t2, eliminatoria=True):
         }
 
     # Como ya no tenemos lam1/lam2 únicas, usamos la media de las intensidades 
-    # para estimar los goles de la prórroga (un tercio del tiempo original)
-    lam1_et = (lam1_stats * PESO_STATS + lam1_elo * PESO_ELO) * 0.3
-    lam2_et = (lam2_stats * PESO_STATS + lam2_elo * PESO_ELO) * 0.3
+    # para estimar los goles de la prórroga (un cuarto del tiempo original (no suelen agrega tiiempo))
+    lam1_et = ((1 - w_elo) * lam1_stats + w_elo * lam1_elo) * 0.25
+    lam2_et = ((1 - w_elo) * lam2_stats + w_elo * lam2_elo) * 0.25
     
-    alpha_duelo = 0.005 # Valor consistente con la función anterior
+    alpha_duelo = 0.001 + 0.0003 * abs(delta_elo)# Valor consistente con la función anterior
     
     prob_et = {
         (ea, eb): prob_nb2(lam1_et, alpha_duelo, ea) * prob_nb2(lam2_et, alpha_duelo, eb)
@@ -337,10 +346,17 @@ def calcular_probabilidades(t1, t2, eliminatoria=True):
     p_draw = sum(p for (i, j), p in prob_120.items() if i == j) 
     p_win2 = sum(p for (i, j), p in prob_120.items() if i < j)
     
-    p_pen1 = 0.5 + 0.15 * math.tanh(delta_elo / 400.0)
+        # Probabilidad de que el equipo 1 gane en penales
+    # Usamos tanh para mantenerla entre 0 y 1
+    p_pen1 = 0.5 + 0.12 * math.tanh(delta_elo / 400.0)
+
+    # Aseguramos que esté en [0.35, 0.65] por si acaso
+    p_pen1 = max(0.35, min(0.65, p_pen1))
+
+    # Probabilidad final (120' + penales)
     p_final1 = p_win1 + p_draw * p_pen1
     p_final2 = p_win2 + p_draw * (1.0 - p_pen1)
-    
+        
     return {
         "top_90": top_90,
         "exp_goals_90": exp_goals_90,
