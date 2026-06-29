@@ -1,0 +1,178 @@
+
+
+
+
+Este modelo debe entenderse exclusivamente como un ejercicio exploratorio de modelización estadística aplicado a fútbol, con el objetivo de estudiar cómo diferentes capas de información (Poisson tipo Dixon & Coles, xG, Elo y ponderaciones estructurales) interactúan en un sistema unificado.
+
+No tiene pretensiones de ser el mejor predictor de resultados reales ni de competir con modelos profesionales calibrados y validados empíricamente.
+
+El proyecto fue desarrollado en un período breve de aproximadamente dos horas durante un domingo, con fines principalmente experimentales y de exploración metodológica.
+
+IMPORTANTE: EL MODELO NO FUE VALIDADO CON UN CONJUNTO DE VALIDACIÓN
+
+
+
+
+descripcion_modelo = 
+
+El modelo está inspirado en el marco clásico de Dixon & Coles (1997) para la modelización de resultados en fútbol mediante procesos Poisson independientes, 
+extendiendo dicho enfoque mediante la incorporación de variables modernas de rendimiento y factores estructurales.
+
+MODELO PREDICTIVO HÍBRIDO PARA FÚTBOL
+
+1. Base Poisson tipo Dixon & Coles (1997)
+   Se asume que los goles de cada equipo siguen distribuciones Poisson
+   independientes en una matriz bivariada, donde las intensidades (λ)
+   dependen de la fortaleza ofensiva y defensiva relativa de ambos equipos.
+
+2. Métricas modernas (xG / xGA)
+   A diferencia del modelo original, la estimación de las intensidades se
+   basa principalmente en goles esperados (xG y xGA), utilizando los goles
+   reales únicamente para calcular métricas secundarias como la eficiencia
+   de definición.
+
+3. Incorporación de Elo (ensamble híbrido)
+   Se incorpora una expectativa de goles derivada exclusivamente del ranking
+   Elo mediante regresiones exponenciales. La intensidad final resulta de un
+   ensamble ponderado:
+       - 70% rendimiento estadístico (Poisson + xG)
+       - 30% expectativa histórica basada en Elo
+
+4. Ponderación por calidad del contexto competitivo
+   Los partidos históricos reciben un peso diferente según la fortaleza del
+   torneo. De esta manera, el rendimiento obtenido en competiciones de mayor
+   nivel (por ejemplo, un Mundial) influye más que el obtenido en torneos de
+   menor exigencia como un amistoso.
+
+5. Ajuste por fuerza del rival
+   Durante la recopilación de estadísticas, los valores de xG y xGA se
+   corrigen exponencialmente según el Elo del oponente enfrentado. Esto evita
+   que calendarios fáciles o difíciles distorsionen la estimación de la
+   verdadera fortaleza del equipo.
+
+6. Eficiencia de definición (Finishing)
+   Se estima la capacidad histórica de conversión mediante la relación
+   Goles/xG. Para evitar sobreajuste por rachas de fortuna o infortunio,
+   este factor se regulariza fuertemente, desplazándolo un 75% hacia el valor
+   neutro de 1.0 antes de aplicarlo sobre la intensidad ofensiva.
+
+7. Regularización bayesiana (Shrinkage)
+   Se incorpora un "peso fantasma" equivalente a tres partidos de nivel
+   Mundial con estadísticas promedio. Este prior reduce la varianza de las
+   estimaciones cuando la muestra de partidos disponibles es pequeña.
+
+8. Efecto de localía (Anfitriones 2026)
+   Estados Unidos, México y Canadá reciben un ajuste especial por condición
+   de anfitriones:
+       - +100 puntos de Elo
+       - +15% sobre la intensidad ofensiva
+       - −10% sobre la vulnerabilidad defensiva
+
+9. Ajuste para eliminatorias con tiempo suplementario
+   Si un partido de eliminación directa finaliza empatado tras los 90
+   minutos, se calcula una matriz adicional correspondiente al tiempo extra,
+   escalando las intensidades exactamente en una proporción de 30/90.
+
+10. Modelo latente EM de ataque y defensa (estructura jerárquica)
+    Se estima una variable latente por equipo (θ_i) que representa su
+    fortaleza ofensiva y defensiva, desacoplando el rendimiento observado
+    de los efectos del contexto competitivo. Posible conflicto ya que usa el sistema elo.
+
+11. Normalización por nivel de torneo (proyección a Mundial)
+    Todas las métricas observadas (xG, xGA, goles a favor y en contra)
+    se proyectan al nivel de referencia del Mundial mediante una función
+    de corrección dependiente del poder del torneo.
+    Esta transformación ajusta las estadísticas para hacer comparables
+    ligas y competiciones de distinta calidad, evitando sesgos de contexto.
+    Matemáticamente, se escala cada observación usando la razón entre
+    g(π_WC) y g(π_j), donde π_WC es el nivel de referencia.
+
+12. Sobredispersión dependiente del diferencial de Elo (NB2 heterocedástico)
+    La distribución de goles no se modela como Poisson puro, sino como una
+    Binomial Negativa (NB2) donde la varianza depende del desbalance entre
+    equipos.
+
+13. Corrección por fuerza del rival (ajuste exponencial de contexto)
+    Durante la construcción de estadísticas agregadas, cada observación
+    es reponderada según el Elo del rival enfrentado.
+    Se aplica un factor exponencial simétrico.
+
+14. Ensamble no lineal de intensidades Poisson (Stats + Elo)
+    La intensidad final de goles no proviene de un único modelo, sino de
+    un ensamble convexo entre dos componentes:
+        - 70% intensidad derivada de xG/xGA ajustados (modelo estadístico)
+        - 30% intensidad derivada de regresión exponencial sobre ΔElo
+    El resultado no es lineal en Elo ni en xG, sino una combinación
+    estructural de dos procesos generativos distintos.
+
+15. Modelo de tiempo extra como proceso condicional acoplado
+    El tiempo suplementario no se modela de forma independiente, sino como
+    una extensión estocástica del proceso de 90 minutos.
+    Las intensidades se reducen al 30% y la distribución se activa solo
+    en escenarios donde el partido termina empatado.
+    La distribución final se obtiene mediante convolución entre el espacio
+    de resultados del tiempo reglamentario y el del tiempo extra.
+
+____________________________________________________________________________
+
+fuentes_y_construccion_datos = 
+Fuentes de datos y construcción de variables
+
+1) Métricas de rendimiento (xG, xGA, goles):
+Los datos de xG, xGA, goles a favor y goles en contra fueron compilados ""manualmente"" a partir de la página "footystats" y no provienen de una API estructurada. 
+""manualmente"": Parte de estos valores fueron transcritos o generados con asistencia de modelos de lenguaje, por lo que pueden contener errores, inconsistencias o aproximaciones. 
+En consecuencia, deben interpretarse como datos semi-sintéticos o no totalmente auditados. Ya que no es que fueron tomados por la API y filtrados con SQL.
+
+2) Ratings Elo:
+Los valores de Elo de equipos fueron obtenidos de eloratings.net, considerado como referencia estándar para ratings de fuerza relativa a nivel de selecciones.
+
+3) Construcción del Elo de torneo:
+El Elo representativo de cada torneo no es observado directamente, sino construido de forma heurística (y sin validar):
+
+- Formatos tipo liga:
+  Elo_torneo = (mediana(Elo equipos) + promedio(Elo equipos) + promedio(top 5 equipos)) / 3
+
+- Formatos tipo copa:
+  Elo_torneo = (mediana(Elo equipos) + promedio(Elo equipos)) / 2 + (promedio(top 3 equipos) / 2)
+
+- World cup, no termino el torneo, se usa un promedio global: 1839
+
+Esta construcción busca capturar diferencias estructurales entre formatos competitivos:
+- En ligas, la interacción es más homogénea entre todos los equipos.
+- En copas, los enfrentamientos tienden a concentrarse más entre equipos de mayor fuerza relativa, por lo que se pondera más fuertemente el rendimiento del top del torneo.
+
+
+
+____________________________________________________________________________
+
+limitaciones_y_uso = 
+
+El modelo no debe interpretarse como una herramienta adecuada para apuestas deportivas, PRODE o entornos estratégicos de predicción competitiva.
+
+1) Falta de validación estadística formal:
+El modelo no ha sido sometido a un esquema riguroso de backtesting out-of-sample ni a tests sistemáticos de calibración (e.g. log-loss, Brier score), por lo que su capacidad predictiva no está cuantificada de manera robusta.
+
+2) Dependencia del entorno estratégico:
+En contextos como apuestas o PRODE, el problema no es únicamente estimar probabilidades reales, sino modelar la distribución de creencias del resto de agentes. Esto transforma el problema en uno de teoría de juegos más que de predicción estadística.
+
+3) Consideración de valor esperado vs popularidad (analogía tipo poker):
+En un PRODE o sistema de apuestas masivo, el valor no proviene necesariamente del evento más probable, sino del desajuste entre probabilidad real y probabilidad percibida por la masa de jugadores.
+
+Por ejemplo, si un equipo A tiene 51% de probabilidad de ganar frente a un equipo B con 49%, la elección óptima en un entorno competitivo no es trivial:
+- Si la mayoría selecciona A por ser favorito, la acción sobre A queda “concentrada” en la población.
+- Esto implica que seleccionar B puede ser estratégicamente superior en términos de valor relativo en el espacio de resultados posibles.
+
+En términos de teoría de apuestas:
+no se maximiza únicamente la probabilidad de acierto, sino la expectativa relativa frente a la distribución de apuestas de otros agentes.
+
+Es decir uno querría no solo elegir a los candidatos a ganar un partido, sino también por momento diferenciarse de otros.
+Este efecto aumenta a medida que aumentan la cantidad de jugadores y se tiene más conocimiento de los prefiles de apostadores.
+
+En consecuencia, el modelo está diseñado para predicción probabilística, no para optimización estratégica en entornos adversariales.
+
+
+
+
+
+
+
