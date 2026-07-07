@@ -7,7 +7,7 @@ datos_potencia_torneos_2026 = [
     {"torneo": "WC Qualification Europe", "potencia_torneo": 1727.33},
     {"torneo": "Copa America", "potencia_torneo": 1934.18},
     {"torneo": "UEFA Nations League", "potencia_torneo": 1721.82},
-    {"torneo": "World Cups", "potencia_torneo": 1879.25},
+    {"torneo": "World Cup", "potencia_torneo": 1879.25},
     {"torneo": "AFC Asian Cup", "potencia_torneo": 1625.61},
     {"torneo": "Africa Cup of Nations", "potencia_torneo": 1644.07},
     {"torneo": "WC Qualification Africa", "potencia_torneo": 1495.98},
@@ -85,6 +85,47 @@ datos_torneos_completos = [
     {"torneo": "CONCACAF Nations League", "equipo": "Canadá", "partidos_jugados": 4, "xg_90": 1.25, "xga_90": 0.57, "goles_favor_90": 1.50, "goles_contra_90": 0.75},
     {"torneo": "Gold Cup", "equipo": "México", "partidos_jugados": 6, "xg_90": 1.61, "xga_90": 0.73, "goles_favor_90": 1.67, "goles_contra_90": 0.50},
     {"torneo": "Gold Cup", "equipo": "Estados Unidos", "partidos_jugados": 6, "xg_90": 1.51, "xga_90": 1.05, "goles_favor_90": 2.17, "goles_contra_90": 1.00},
+#Octavos dee final
+    {"torneo": "World Cup", "equipo": "Canada", "partidos_jugados": 4, "xg_90": 2.2, "xga_90": 0.62, "goles_favor_90": 2.25, "goles_contra_90": 0.75},
+    {"torneo": "World Cup", "equipo": "Morocco", "partidos_jugados": 4, "xg_90": 1.66, "xga_90": 0.91, "goles_favor_90": 1.75, "goles_contra_90": 1.0},
+    {"torneo": "World Cup", "equipo": "Paraguay", "partidos_jugados": 4, "xg_90": 0.81, "xga_90": 2.39, "goles_favor_90": 0.75, "goles_contra_90": 1.25},
+    {"torneo": "World Cup", "equipo": "France", "partidos_jugados": 4, "xg_90": 2.21, "xga_90": 0.84, "goles_favor_90": 3.25, "goles_contra_90": 0.5},
+    {"torneo": "World Cup", "equipo": "Brazil", "partidos_jugados": 4, "xg_90": 1.77, "xga_90": 1.13, "goles_favor_90": 2.25, "goles_contra_90": 0.5},
+    {"torneo": "World Cup", "equipo": "Norway", "partidos_jugados": 4, "xg_90": 1.36, "xga_90": 1.66, "goles_favor_90": 2.5, "goles_contra_90": 2.0},
+    {"torneo": "World Cup", "equipo": "Mexico", "partidos_jugados": 4, "xg_90": 1.26, "xga_90": 0.89, "goles_favor_90": 2.0, "goles_contra_90": 0.0},
+    {"torneo": "World Cup", "equipo": "England", "partidos_jugados": 4, "xg_90": 2.13, "xga_90": 0.86, "goles_favor_90": 2.0, "goles_contra_90": 0.75},
+    {"torneo": "World Cup", "equipo": "Portugal", "partidos_jugados": 4, "xg_90": 1.49, "xga_90": 1.38, "goles_favor_90": 2.0, "goles_contra_90": 0.5},
+    {"torneo": "World Cup", "equipo": "Spain", "partidos_jugados": 4, "xg_90": 2.3, "xga_90": 0.54, "goles_favor_90": 2.0, "goles_contra_90": 0.0},
+    {"torneo": "World Cup", "equipo": "USMNT", "partidos_jugados": 4, "xg_90": 1.56, "xga_90": 0.93, "goles_favor_90": 2.5, "goles_contra_90": 1.0},
+    {"torneo": "World Cup", "equipo": "Belgium", "partidos_jugados": 4, "xg_90": 2.43, "xga_90": 1.25, "goles_favor_90": 2.25, "goles_contra_90": 1.0},
+    {"torneo": "World Cup", "equipo": "Argentina", "partidos_jugados": 4, "xg_90": 1.67, "xga_90": 0.96, "goles_favor_90": 2.75, "goles_contra_90": 0.75},
+    {"torneo": "World Cup", "equipo": "Egypt", "partidos_jugados": 4, "xg_90": 1.63, "xga_90": 1.48, "goles_favor_90": 1.5, "goles_contra_90": 1.0},
+    {"torneo": "World Cup", "equipo": "Switzerland", "partidos_jugados": 4, "xg_90": 1.66, "xga_90": 1.01, "goles_favor_90": 2.25, "goles_contra_90": 0.75},
+    {"torneo": "World Cup", "equipo": "Colombia", "partidos_jugados": 4, "xg_90": 1.64, "xga_90": 0.8, "goles_favor_90": 1.25, "goles_contra_90": 0.25},
+    
+    {"torneo":"friendly","equipo":"Sudáfrica","partidos_jugados":4,"xg_90":1.42,"xga_90":0.23,"goles_favor_90":2.00,"goles_contra_90":0.50},
+    {"torneo":"friendly","equipo":"Canadá","partidos_jugados":8,"xg_90":1.14,"xga_90":0.90,"goles_favor_90":1.25,"goles_contra_90":0.38},
+    {"torneo":"friendly","equipo":"Brasil","partidos_jugados":4,"xg_90":1.62,"xga_90":1.04,"goles_favor_90":2.50,"goles_contra_90":1.00},
+    {"torneo":"friendly","equipo":"Japón","partidos_jugados":6,"xg_90":1.42,"xga_90":1.10,"goles_favor_90":1.67,"goles_contra_90":1.00},
+    {"torneo":"friendly","equipo":"Marruecos","partidos_jugados":5,"xg_90":1.92,"xga_90":0.11,"goles_favor_90":1.80,"goles_contra_90":0.00},
+    {"torneo":"friendly","equipo":"Costa de Marfil","partidos_jugados":4,"xg_90":0.66,"xga_90":0.19,"goles_favor_90":0.50,"goles_contra_90":0.50},
+    {"torneo":"friendly","equipo":"Noruega","partidos_jugados":2,"xg_90":1.46,"xga_90":0.31,"goles_favor_90":1.00,"goles_contra_90":0.50},
+    {"torneo":"friendly","equipo":"Francia","partidos_jugados":10,"xg_90":1.90,"xga_90":1.10,"goles_favor_90":2.00,"goles_contra_90":1.30},
+    {"torneo":"friendly","equipo":"Suecia","partidos_jugados":8,"xg_90":1.66,"xga_90":1.55,"goles_favor_90":2.75,"goles_contra_90":1.25},
+    {"torneo":"friendly","equipo":"México","partidos_jugados":8,"xg_90":1.05,"xga_90":1.00,"goles_favor_90":0.88,"goles_contra_90":1.63},
+    {"torneo":"friendly","equipo":"Ecuador","partidos_jugados":4,"xg_90":1.36,"xga_90":1.07,"goles_favor_90":1.00,"goles_contra_90":0.50},
+    {"torneo":"friendly","equipo":"Inglaterra","partidos_jugados":6,"xg_90":1.44,"xga_90":0.53,"goles_favor_90":1.62,"goles_contra_90":1.00},
+    {"torneo":"friendly","equipo":"República Democrática del Congo","partidos_jugados":5,"xg_90":0.36,"xga_90":0.48,"goles_favor_90":1.50,"goles_contra_90":0.16},
+    {"torneo":"friendly","equipo":"Senegal","partidos_jugados":11,"xg_90":1.23,"xga_90":1.10,"goles_favor_90":1.88,"goles_contra_90":1.07},
+    {"torneo":"friendly","equipo":"Portugal","partidos_jugados":14,"xg_90":1.62,"xga_90":1.14,"goles_favor_90":1.85,"goles_contra_90":0.80},
+    {"torneo":"friendly","equipo":"Algeria","partidos_jugados":9,"xg_90":1.36,"xga_90":1.08,"goles_favor_90":2.70,"goles_contra_90":0.50},
+    {"torneo":"friendly","equipo":"Argentina","partidos_jugados":7,"xg_90":1.79,"xga_90":0.53,"goles_favor_90":3.00,"goles_contra_90":0.12},
+    {"torneo":"friendly","equipo":"Austria","partidos_jugados":3,"xg_90":0.77,"xga_90":0.64,"goles_favor_90":2.33,"goles_contra_90":0.33},
+    {"torneo":"friendly","equipo":"Paraguay","partidos_jugados":4,"xg_90":0.76,"xga_90":0.99,"goles_favor_90":1.25,"goles_contra_90":1.75}
+]
+
+"""
+
     {"torneo": "Gold Cup", "equipo": "Canadá", "partidos_jugados": 4, "xg_90": 1.28, "xga_90": 0.70, "goles_favor_90": 2.25, "goles_contra_90": 0.25},
     {"torneo": "World Cup", "equipo": "Bélgica", "partidos_jugados": 3, "xg_90": 2.55, "xga_90": 0.98, "goles_favor_90": 2.00, "goles_contra_90": 0.67},
     {"torneo": "World Cup", "equipo": "Canadá", "partidos_jugados": 3, "xg_90": 2.39, "xga_90": 0.62, "goles_favor_90": 2.67, "goles_contra_90": 1.00},
@@ -118,28 +159,8 @@ datos_torneos_completos = [
     {"torneo": "World Cup", "equipo": "Bosnia y Herzegovina", "partidos_jugados": 3, "xg_90": 1.04, "xga_90": 1.49, "goles_favor_90": 1.67, "goles_contra_90": 2.00},
     {"torneo": "World Cup", "equipo": "Paraguay", "partidos_jugados": 3, "xg_90": 0.76, "xga_90": 2.27, "goles_favor_90": 0.67, "goles_contra_90": 1.33},
     {"torneo": "World Cup", "equipo": "Ghana", "partidos_jugados": 3, "xg_90": 0.59, "xga_90": 1.48, "goles_favor_90": 0.67, "goles_contra_90": 0.67},
-    {"torneo":"friendly","equipo":"Sudáfrica","partidos_jugados":4,"xg_90":1.42,"xga_90":0.23,"goles_favor_90":2.00,"goles_contra_90":0.50},
-    {"torneo":"friendly","equipo":"Canadá","partidos_jugados":8,"xg_90":1.14,"xga_90":0.90,"goles_favor_90":1.25,"goles_contra_90":0.38},
-    {"torneo":"friendly","equipo":"Brasil","partidos_jugados":4,"xg_90":1.62,"xga_90":1.04,"goles_favor_90":2.50,"goles_contra_90":1.00},
-    {"torneo":"friendly","equipo":"Japón","partidos_jugados":6,"xg_90":1.42,"xga_90":1.10,"goles_favor_90":1.67,"goles_contra_90":1.00},
-    {"torneo":"friendly","equipo":"Marruecos","partidos_jugados":5,"xg_90":1.92,"xga_90":0.11,"goles_favor_90":1.80,"goles_contra_90":0.00},
-    {"torneo":"friendly","equipo":"Costa de Marfil","partidos_jugados":4,"xg_90":0.66,"xga_90":0.19,"goles_favor_90":0.50,"goles_contra_90":0.50},
-    {"torneo":"friendly","equipo":"Noruega","partidos_jugados":2,"xg_90":1.46,"xga_90":0.31,"goles_favor_90":1.00,"goles_contra_90":0.50},
-    {"torneo":"friendly","equipo":"Francia","partidos_jugados":10,"xg_90":1.90,"xga_90":1.10,"goles_favor_90":2.00,"goles_contra_90":1.30},
-    {"torneo":"friendly","equipo":"Suecia","partidos_jugados":8,"xg_90":1.66,"xga_90":1.55,"goles_favor_90":2.75,"goles_contra_90":1.25},
-    {"torneo":"friendly","equipo":"México","partidos_jugados":8,"xg_90":1.05,"xga_90":1.00,"goles_favor_90":0.88,"goles_contra_90":1.63},
-    {"torneo":"friendly","equipo":"Ecuador","partidos_jugados":4,"xg_90":1.36,"xga_90":1.07,"goles_favor_90":1.00,"goles_contra_90":0.50},
-    {"torneo":"friendly","equipo":"Inglaterra","partidos_jugados":6,"xg_90":1.44,"xga_90":0.53,"goles_favor_90":1.62,"goles_contra_90":1.00},
-    {"torneo":"friendly","equipo":"República Democrática del Congo","partidos_jugados":5,"xg_90":0.36,"xga_90":0.48,"goles_favor_90":1.50,"goles_contra_90":0.16},
-    {"torneo":"friendly","equipo":"Senegal","partidos_jugados":11,"xg_90":1.23,"xga_90":1.10,"goles_favor_90":1.88,"goles_contra_90":1.07},
-    {"torneo":"friendly","equipo":"Portugal","partidos_jugados":14,"xg_90":1.62,"xga_90":1.14,"goles_favor_90":1.85,"goles_contra_90":0.80},
-    {"torneo":"friendly","equipo":"Algeria","partidos_jugados":9,"xg_90":1.36,"xga_90":1.08,"goles_favor_90":2.70,"goles_contra_90":0.50},
-    {"torneo":"friendly","equipo":"Argentina","partidos_jugados":7,"xg_90":1.79,"xga_90":0.53,"goles_favor_90":3.00,"goles_contra_90":0.12},
-    {"torneo":"friendly","equipo":"Austria","partidos_jugados":3,"xg_90":0.77,"xga_90":0.64,"goles_favor_90":2.33,"goles_contra_90":0.33},
-    {"torneo":"friendly","equipo":"Paraguay","partidos_jugados":4,"xg_90":0.76,"xga_90":0.99,"goles_favor_90":1.25,"goles_contra_90":1.75}
-]
 
-
+"""
 # Datos reales: goles + Elo promedio por equipo
 partidos_filtrados = [
     {"equipo1": "Canada", "equipo2": "South Africa", "elo_equipo1": 1764, "elo_equipo2": 1559, "goles_equipo1": 1, "goles_equipo2": 0},
@@ -348,7 +369,7 @@ partidos_filtrados = [
 
 
 
-
+"""
 # --- 3. BASE DE DATOS BASE (ELO Y LOCALÍA) ---
 teams_base = {
     "Sudáfrica": [1575, False], "Canadá": [1748, True], "Brasil": [2009, False],
@@ -363,5 +384,71 @@ teams_base = {
     "Australia": [1800, False], "Egipto": [1742, False], "Argentina": [2148, False],
     "Cabo Verde": [1622, False], "Colombia": [2004, False], "Ghana": [1575, False]
 }
+
+# --- 3. BASE DE DATOS BASE (ELO ACTUALIZADO Y LOCALÍA) OCtavos de fInal
+teams_base = {
+    "Canadá": [1764, True],
+    "Marruecos": [1886, False],
+    "Paraguay": [1823, False],
+    "Francia": [2134, False],
+    "Brasil": [2031, False],
+    "Noruega": [1934, False],
+    "México": [1943, True],
+    "Inglaterra": [2046, False],
+    "Portugal": [2013, False],
+    "España": [2159, False],
+    "Estados Unidos": [1798, True],
+    "Bélgica": [1910, False],
+    "Argentina": [2151, False],
+    "Egipto": [1747, False],
+    "Suiza": [1943, False],
+    "Colombia": [2004, False]
+}
+
+metricas_extra = {
+    "Canadá": {"diferencia_elo_torneo": -38, "diferencia_elo_año": -4, "performance_rank": 15, "prediction_risk": 25},
+    "Marruecos": {"diferencia_elo_torneo": 46, "diferencia_elo_año": 74, "performance_rank": 13, "prediction_risk": 75},
+    "Paraguay": {"diferencia_elo_torneo": -10, "diferencia_elo_año": -2, "performance_rank": 21, "prediction_risk": 25},
+    "Francia": {"diferencia_elo_torneo": 72, "diferencia_elo_año": 79, "performance_rank": 3, "prediction_risk": 75},
+    "Brasil": {"diferencia_elo_torneo": 53, "diferencia_elo_año": 30, "performance_rank": 6, "prediction_risk": 50},
+    "Noruega": {"diferencia_elo_torneo": 12, "diferencia_elo_año": 68, "performance_rank": 10, "prediction_risk": 150},
+    "México": {"diferencia_elo_torneo": 109, "diferencia_elo_año": 106, "performance_rank": 2, "prediction_risk": 50},
+    "Inglaterra": {"diferencia_elo_torneo": 4, "diferencia_elo_año": 62, "performance_rank": 5, "prediction_risk": 125},
+    "Portugal": {"diferencia_elo_torneo": 37, "diferencia_elo_año": -17, "performance_rank": 12, "prediction_risk": 0},
+    "España": {"diferencia_elo_torneo": -13, "diferencia_elo_año": 2, "performance_rank": 7, "prediction_risk": 25},
+    "Estados Unidos": {"diferencia_elo_torneo": 51, "diferencia_elo_año": 78, "performance_rank": 9, "prediction_risk": 0},
+    "Bélgica": {"diferencia_elo_torneo": 60, "diferencia_elo_año": 63, "performance_rank": 14, "prediction_risk": 125},
+    "Argentina": {"diferencia_elo_torneo": 38, "diferencia_elo_año": 19, "performance_rank": 1, "prediction_risk": 25},
+    "Egipto": {"diferencia_elo_torneo": 0, "diferencia_elo_año": 81, "performance_rank": 19, "prediction_risk": 100},
+    "Suiza": {"diferencia_elo_torneo": 46, "diferencia_elo_año": 99, "performance_rank": 8, "prediction_risk": 75},
+    "Colombia": {"diferencia_elo_torneo": 6, "diferencia_elo_año": 54, "performance_rank": 4, "prediction_risk": 25},
+}
+
+"""
+#Datos Cuartos de final
+
+teams_base = {
+    "Suiza": [1943, False],
+    "España": [2177, False],
+    "Noruega": [1972, False],
+    "Inglaterra": [2076, False],
+    "Bélgica": [1961, False],
+    "Francia": [2143, False],
+    "Argentina": [2156, False],
+    "Marruecos": [1921, False]
+}
+
+metricas_extra = {
+    "Suiza": {"diferencia_elo_torneo": 52, "diferencia_elo_año": 99, "performance_rank": 9, "prediction_risk": 60},
+    "España": {"diferencia_elo_torneo": 20, "diferencia_elo_año": 20, "performance_rank": 3, "prediction_risk": 20},
+    "Noruega": {"diferencia_elo_torneo": 58, "diferencia_elo_año": 106, "performance_rank": 6, "prediction_risk": 120},
+    "Inglaterra": {"diferencia_elo_torneo": 52, "diferencia_elo_año": 92, "performance_rank": 4, "prediction_risk": 140},
+    "Bélgica": {"diferencia_elo_torneo": 67, "diferencia_elo_año": 114, "performance_rank": 10, "prediction_risk": 120},
+    "Francia": {"diferencia_elo_torneo": 80, "diferencia_elo_año": 88, "performance_rank": 2, "prediction_risk": 60},
+    "Argentina": {"diferencia_elo_torneo": 41, "diferencia_elo_año": 24, "performance_rank": 1, "prediction_risk": 60},
+    "Marruecos": {"diferencia_elo_torneo": 94, "diferencia_elo_año": 109, "performance_rank": 8, "prediction_risk": 80}
+}
+
+
 
 
