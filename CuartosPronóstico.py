@@ -56,12 +56,9 @@ print("\n🏠 AJUSTE DE ELO POR LOCALÍA (ANFITRIONES 2026)")
 for eq in ANFITRIONES_2026:
     if eq in teams_base:
         elo_actual = teams_base[eq][0]
-        teams_base[eq] = [elo_actual + 80, teams_base[eq][1]]
-        print(f"  ✅ {eq}: ELO {elo_actual} → {elo_actual + 80} (+80)")
+        teams_base[eq] = [elo_actual + 50, teams_base[eq][1]]
+        print(f"  ✅ {eq}: ELO {elo_actual} → {elo_actual + 50} (+50)")
 print("─" * 50)
-
-
-
 
 dict_potencias = {
     MAPA_TORNEOS.get(d["torneo"], d["torneo"]): d["potencia_torneo"] 
@@ -91,7 +88,7 @@ def registrar_prorrogas(partidos, lista_prorrogas):
                 break
     return partidos_copia
 
-# Registramos los partidos que fueron a prórroga (Equipo1, Equipo2, 90', 90', 120', 120')
+# Registramos los partidos que fueron a prórroga
 partidos_con_90_separados = registrar_prorrogas(partidos_filtrados, [
     ("Argentina", "Cape Verde", 2, 2, 3, 2),
     ("Colombia", "Switzerland", 0, 0, 0, 0),
@@ -100,22 +97,35 @@ partidos_con_90_separados = registrar_prorrogas(partidos_filtrados, [
     ("Netherlands", "Morocco", 1, 1, 1, 1)
 ])
 
-datos_normalizados = [
-    {**r, "equipo": MAPA_EQUIPOS.get(r["equipo"], r["equipo"]), "torneo": MAPA_TORNEOS.get(r["torneo"], r["torneo"])}
-    for r in datos_torneos_completos
-]
-
+# ✅ NORMALIZACIÓN Y FILTRADO (TODO EN UN SOLO PASO)
 partidos_normalizados = [
-    {**p, "equipo1": MAPA_EQUIPOS.get(p["equipo1"], p["equipo1"]), "equipo2": MAPA_EQUIPOS.get(p["equipo2"], p["equipo2"])}
+    {**p, "equipo1": MAPA_EQUIPOS.get(p["equipo1"], p["equipo1"]), 
+          "equipo2": MAPA_EQUIPOS.get(p["equipo2"], p["equipo2"])}
     for p in partidos_con_90_separados
 ]
 
-# ══════════════════════════════════════════════════════════════════════════════
-# §3 FASE 1: PRE-ENTRENAMIENTO DEL MODELO ELO (SOLO ELO Y GOLES)
-# ══════════════════════════════════════════════════════════════════════════════
+datos_normalizados = [
+    {**r, "equipo": MAPA_EQUIPOS.get(r["equipo"], r["equipo"]), 
+         "torneo": MAPA_TORNEOS.get(r["torneo"], r["torneo"])}
+    for r in datos_torneos_completos
+]
+
+# ✅ FILTROS PARA EQUIPOS EN teams_base
+partidos_con_ambos_en_teams = [
+    p for p in partidos_normalizados
+    if p["equipo1"] in teams_base and p["equipo2"] in teams_base
+]
+
+datos_con_equipos_en_teams = [
+    r for r in datos_normalizados
+    if r["equipo"] in teams_base
+]
+
+print(f"📊 Partidos totales: {len(partidos_normalizados)} → Filtrados: {len(partidos_con_ambos_en_teams)}")
+print(f"📊 Equipos en datos: {len(set(r['equipo'] for r in datos_normalizados))} → Filtrados: {len(set(r['equipo'] for r in datos_con_equipos_en_teams))}")
 
 # ══════════════════════════════════════════════════════════════════════════════
-# §4 FASE 2: MOTOR EM (STATS LATENTES Y DIFICULTAD DE TORNEO)
+# §3 FASE 2: MOTOR EM (STATS LATENTES Y DIFICULTAD DE TORNEO)
 # ══════════════════════════════════════════════════════════════════════════════
 
 def sigmoid(x): return 1.0 / (1.0 + math.exp(-x))
@@ -155,8 +165,6 @@ def _e_step(datos, dict_potencias, params, lambda_elo=5.0):
             }
     return latente
 
-EPS_LOG = 1e-6
-
 def _m_step(datos, latente, dict_potencias):
     xs_atk, ys_atk, xs_def, ys_def = [], [], [], []
     PESO_XG, PESO_GF = 1.0, 0.3
@@ -190,8 +198,7 @@ def _m_step(datos, latente, dict_potencias):
 
     def fit_ols(xs, ys):
         if len(xs) < 2: 
-            # ⚠️ En lugar de (0,0), usar un valor por defecto más razonable
-            return 0.0, 0.0  # Neutral (g=1 para todo x)
+            return 0.0, 0.0
         mx, my = sum(xs) / len(xs), sum(ys) / len(ys)
         var = sum((x - mx) ** 2 for x in xs)
         if var > 1e-12:
@@ -211,7 +218,6 @@ def estimar_modelo_latente(datos, dict_potencias, max_iter=20, tol=1e-5):
         latente = _e_step(datos, dict_potencias, params)
         params_new = _m_step(datos, latente, dict_potencias)
         
-        # Mostrar progreso para debugging
         print(f"Iteración {i+1}: b_atk={params_new['atk'][1]:.4f}, b_def={params_new['def'][1]:.4f}")
         
         if abs(params_new["atk"][1] - params["atk"][1]) < tol and \
@@ -221,65 +227,54 @@ def estimar_modelo_latente(datos, dict_potencias, max_iter=20, tol=1e-5):
         params = params_new
     return latente, params_new
 
-# Ejecutar
+# ✅ USANDO DATOS FILTRADOS
 print("⏳ Entrenando modelo latente...")
-_, PARAMS_TORNEO = estimar_modelo_latente(datos_normalizados, dict_potencias)
+_, PARAMS_TORNEO = estimar_modelo_latente(datos_con_equipos_en_teams, dict_potencias)
 
-# Verificar resultados
 print(f"\n📊 PARÁMETROS FINALES:")
 print(f"  Ataque:  a={PARAMS_TORNEO['atk'][0]:.4f}, b={PARAMS_TORNEO['atk'][1]:.4f}")
 print(f"  Defensa: a={PARAMS_TORNEO['def'][0]:.4f}, b={PARAMS_TORNEO['def'][1]:.4f}")
 
-# Verificar signos esperados
 if PARAMS_TORNEO['atk'][1] > 0:
-    print("⚠️  WARNING: b_atk es POSITIVO (debería ser negativo para que el ataque aumente en torneos difíciles)")
+    print("⚠️  WARNING: b_atk es POSITIVO (debería ser negativo)")
 if PARAMS_TORNEO['def'][1] < 0:
-    print("⚠️  WARNING: b_def es NEGATIVO (debería ser positivo para que la defensa empeore en torneos difíciles)")
-
-
+    print("⚠️  WARNING: b_def es NEGATIVO (debería ser positivo)")
 
 # ══════════════════════════════════════════════════════════════════════════════
-# §5 ACUMULACIÓN DE STATS Y MÉTRICAS EXTRA
+# §4 ACUMULACIÓN DE STATS Y MÉTRICAS EXTRA
 # ══════════════════════════════════════════════════════════════════════════════
 
 def proyectar_a_mundial(q, pot, b, tipo="atk"):
     x = (pot - BASE_POT) / 200.0
     if tipo == "def":
-        return q * math.exp(b * x)   # b_def positivo → aumenta xGA
+        return q * math.exp(b * x)
     else:
-        return q * math.exp(-b * x)  # b_atk negativo → aumenta xG
+        return q * math.exp(-b * x)
 
 a_atk, b_atk = PARAMS_TORNEO["atk"]
 a_def, b_def = PARAMS_TORNEO["def"]
 FACTOR_RECENCIA_MUNDIAL = 3
 
-# INICIALIZAR UNA SOLA VEZ
 stats_acumuladas = defaultdict(lambda: {"xg": 0.0, "xga": 0.0, "gf": 0.0, "ga": 0.0, "w": 0.0})
 
-# UN SOLO LOOP
-for r in datos_normalizados:
+# ✅ USANDO DATOS FILTRADOS
+for r in datos_con_equipos_en_teams:
     eq = r["equipo"]
     pot = dict_potencias.get(r["torneo"], BASE_POT)
     
     w = peso_observacion(r["partidos_jugados"], pot)
     
-    # Factor de recencia para mundiales recientes
     if r["torneo"] in ["World Cup", "World Cups"] and r["partidos_jugados"] <= 5:
         w *= FACTOR_RECENCIA_MUNDIAL
     
     s = stats_acumuladas[eq]
     
-    # Ataque (b_atk negativo → factor > 1)
     s["xg"] += proyectar_a_mundial(r["xg_90"], pot, b_atk, "atk") * w
     s["gf"] += proyectar_a_mundial(r.get("goles_favor_90", r["xg_90"]), pot, b_atk, "atk") * w
-    
-    # Defensa (b_def positivo → factor > 1)
     s["xga"] += proyectar_a_mundial(r["xga_90"], pot, b_def, "def") * w
     s["ga"] += proyectar_a_mundial(r.get("goles_contra_90", r["xga_90"]), pot, b_def, "def") * w
-    
     s["w"] += w
 
-# Debug: verificar equipos relevantes (SOLO UNA VEZ)
 print("\n📊 STATS ACUMULADAS (equipos relevantes):")
 equipos_clave = ["Argentina", "Brasil", "Francia", "Inglaterra", "España", "Alemania"]
 for eq in equipos_clave:
@@ -292,9 +287,8 @@ def get_elo_prior(eq, tipo="atk"):
     signo = 1.0 if tipo == "atk" else -1.0
     return PRIOR_MEAN * math.exp(signo * (elo - BASE_ELO) / 600.0)
 
-# Definimos la mezcla (Blend)
-W_XG_ATK = 0.78  # 78% peso al xG a favor, 20% a los Goles reales a favor tamíen importa la definición
-W_XG_DEF = 0.92  # 92% peso al xGA en contra, 15% a los Goles reales en contra Asumo que es varianza si no le metieron gol
+W_XG_ATK = 0.78
+W_XG_DEF = 0.92
 
 equipos_stats = {}
 peso_prior = PRIOR_PJ * torneo_confianza(BASE_POT)          
@@ -303,41 +297,37 @@ for eq, s in stats_acumuladas.items():
     denom = s["w"] + peso_prior
     prior_atk, prior_def = get_elo_prior(eq, "atk"), get_elo_prior(eq, "def")
     
-    # Promedios puros con prior
     xg_base  = (s["xg"]  + peso_prior * prior_atk) / denom
     gf_base  = (s["gf"]  + peso_prior * prior_atk) / denom
     xga_base = (s["xga"] + peso_prior * prior_def) / denom
     ga_base  = (s["ga"]  + peso_prior * prior_def) / denom
     
-    # Creamos las variables definitivas mezclando xG y Goles reales
     equipos_stats[eq] = {
         "ataque_mix": (xg_base * W_XG_ATK) + (gf_base * (1.0 - W_XG_ATK)),
         "defensa_mix": (xga_base * W_XG_DEF) + (ga_base * (1.0 - W_XG_DEF))
     }
 
-# Métricas Extra (Boosts dinámicos)
 MAX_RANK = max((d["performance_rank"] for d in metricas_extra.values() if "performance_rank" in d), default=32)
 
-
-
-# ÚNICA FUNCIÓN DE ELO (Fuente de la verdad)
 def obtener_elo_efectivo(equipo):
     elo_base = teams_base.get(equipo, [BASE_ELO])[0]
     extra = metricas_extra.get(equipo, {})
     
-    # 1. Boost de Rank: Bajamos el multiplicador a 0.4 para que no infle tanto
     rank_actual = extra.get("performance_rank", MAX_RANK)
-    boost_rank = abs(rank_actual - MAX_RANK) * 0.3  # <-- Ajustado aquí
+    boost_rank = abs(rank_actual - MAX_RANK) * 0.3
     
-    # 2. Boost de Forma
     elo_torneo = extra.get("diferencia_elo_torneo", 0)
     elo_pre_torneo = extra.get("diferencia_elo_año", 0) - elo_torneo
     boost_forma = 0.5 * elo_torneo + 0.15 * elo_pre_torneo
     
-    # 3. Boost de Localía (Anfitriones)
-    boost_loc = 80.0 if equipo in ANFITRIONES_2026 else 0.0
+    boost_loc = 50.0 if equipo in ANFITRIONES_2026 else 0.0
     
     return elo_base + boost_rank + boost_forma + boost_loc
+
+
+
+
+
 
 # ══════════════════════════════════════════════════════════════════════════════
 # IMPRESIÓN DE LA TABLA (Ahora usa la misma función que el modelo)
@@ -364,7 +354,7 @@ for eq in equipos_ordenados:
     elo_pre_torneo = extra.get("diferencia_elo_año", 0) - elo_torneo
     boost_forma = 0.5 * elo_torneo + 0.15 * elo_pre_torneo
     
-    boost_loc = 80.0 if eq in ANFITRIONES_2026 else 0.0
+    boost_loc = 50.0 if eq in ANFITRIONES_2026 else 0.0
     
     elo_total = obtener_elo_efectivo(eq) # Llamamos a la función real
     boost_acum = boost_rank + boost_forma + boost_loc
@@ -455,8 +445,9 @@ def calcular_factor_prorroga(partidos):
         return max(0.05, min(0.25, factor_bruto)) # Acotado entre 5% y 25%
     return 0.18
 
-BETAS, ALPHA_BASE = entrenar_modelo_90_minutos(partidos_normalizados, equipos_stats)
-FACTOR_ET_MODELO = calcular_factor_prorroga(partidos_normalizados)
+BETAS, ALPHA_BASE = entrenar_modelo_90_minutos(partidos_con_ambos_en_teams, equipos_stats)
+FACTOR_ET_MODELO = calcular_factor_prorroga(partidos_con_ambos_en_teams)
+
 
 print(f"--- PARÁMETROS APRENDIDOS ---")
 print(f"Alpha Base (NB2) : {ALPHA_BASE:.5f}")
@@ -655,7 +646,7 @@ goles_reales_total = 0
 # Estructura para agrupar predicciones (Buckets de 10%)
 calibracion = {"count": [0]*10, "pred_sum": [0.0]*10, "hits_real": [0]*10}
 
-for p in partidos_normalizados:
+for p in partidos_con_ambos_en_teams:
     t1, t2 = p["equipo1"], p["equipo2"]
     g1 = p.get("goles_90_equipo1", p["goles_equipo1"])
     g2 = p.get("goles_90_equipo2", p["goles_equipo2"])
@@ -745,7 +736,7 @@ from collections import defaultdict
 frecuencia_real_simetrica = defaultdict(int)
 prob_acumulada_modelo_simetrica = defaultdict(float)
 
-for p in partidos_normalizados:
+for p in partidos_con_ambos_en_teams:
     t1, t2 = p["equipo1"], p["equipo2"]
     g1 = p.get("goles_90_equipo1", p["goles_equipo1"])
     g2 = p.get("goles_90_equipo2", p["goles_equipo2"])
@@ -789,5 +780,4 @@ for marcador, apariciones in top_resultados_simetricos:
         
     print(f"{str_marcador:<18} | {apariciones:<20} | {pct_real:<10.2%} | {pct_modelo:<18.2%} | {diff:+.2%}")
 print("══════════════════════════════════════════════════════════════════════════════════════════")
-
 

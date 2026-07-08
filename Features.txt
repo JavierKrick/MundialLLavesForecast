@@ -8,7 +8,7 @@ No tiene pretensiones de ser el mejor predictor de resultados reales ni de compe
 
 El proyecto fue desarrollado en un período breve de aproximadamente dos horas durante un domingo, con fines principalmente experimentales y de exploración metodológica.
 
-IMPORTANTE: EL MODELO NO FUE VALIDADO CON UN CONJUNTO DE VALIDACIÓN
+IMPORTANTE: EL MODELO NO FUE VALIDADO CON UN CONJUNTO DE VALIDACIÓN / HAY TAMBIÉN MOMENTOS DONDE HAY DATA LEAKAGE
 
 
 
@@ -21,63 +21,63 @@ extendiendo dicho enfoque mediante la incorporación de variables modernas de re
 MODELO PREDICTIVO HÍBRIDO PARA FÚTBOL
 
 
-    Marco Base tipo Dixon & Coles (1997) Modificado
-    Aunque la arquitectura general está inspirada conceptualmente en Dixon & Coles, estrictamente no se utiliza una distribución Poisson. El modelo asume intensidades (λ) dependientes de la fortaleza ofensiva y defensiva relativa, pero abandona la distribución de Poisson para evitar sus limitaciones clásicas (como la igualdad estricta entre media y varianza).
 
-    Métricas modernas (xG / xGA)
-    A diferencia del modelo original, la estimación de las intensidades se basa principalmente en goles esperados (xG y xGA), utilizando los goles reales únicamente para calcular métricas secundarias como la eficiencia de definición.
+	Arquitectura GLM Integrada (Stats + Elo)
+	El modelo proyecta expectativas de goles unificando las intensidades estadísticas (xG a favor / xGA en contra) (goles marcados/goles recibidos) y la diferencia de ranking Elo dentro de un único Modelo Lineal Generalizado (GLM) Poisson con regularización Ridge (L2). Se abandonó el ensamble posterior de matrices para integrar todas las variables directamente en la regresión base de 90 minutos.
 
-    Incorporación de Elo (ensamble dinámico de distribuciones)
-    Se incorpora una expectativa de goles derivada del ranking Elo mediante regresiones exponenciales. La predicción final de los 90 minutos resulta de un ensamble dinámico de las distribuciones de probabilidad, no de un peso fijo sobre las intensidades. El peso asignado al modelo Elo varía entre un 45% y un 50%, dependiendo de la disparidad de fuerzas (se le da mayor peso a Elo cuanto más parejo es el partido), dejando el resto al rendimiento estadístico.
+	Métricas modernas (xG / xGA)
+	A diferencia del modelo original, la estimación de las intensidades se basa principalmente en goles esperados (xG y xGA), utilizando los goles reales únicamente para calcular métricas secundarias como la eficiencia de definición.
 
-    Ponderación por calidad del contexto competitivo
-    Los partidos históricos reciben un peso diferente según la fortaleza del torneo (e.g. un Mundial pesa más que un amistoso), medido mediante una función sigmoidea sobre el Elo del torneo.
+	Ponderación por calidad del contexto competitivo
+	Los partidos históricos reciben un peso diferente según la fortaleza del torneo (e.g. un Mundial pesa más que un amistoso), medido mediante una función sigmoidea sobre el Elo del torneo.
 
-    Ajuste por dificultad competitiva (no por rival)
-    Durante la recopilación de estadísticas, los valores observados no se ajustan partido a partido según el Elo del oponente, sino que se proyectan al nivel de referencia del Mundial utilizando la potencia estimada del torneo de origen.
+	Factor de Recencia Mundialista 
+	Para anclar rápidamente las estadísticas al nivel de máxima exigencia, los partidos jugados en la Copa del Mundo reciben un multiplicador triple (x3) en su ponderación si el equipo cuenta con una muestra pequeña en este torneo (5 partidos o menos).
 
-    Eficiencia de definición (Finishing regularizado)
-    Se estima la capacidad histórica de conversión (Goles/xG). Para evitar sobreajuste, este factor se regulariza fuertemente, desplazándolo un 80% hacia el valor neutro de 1.0 (reteniendo solo el 20% de la señal original) y acotando su impacto estricto al rango [0.80, 1.20].
+	Ajuste por dificultad competitiva (no por rival)
+	Durante la recopilación de estadísticas, los valores observados no se ajustan partido a partido según el Elo del oponente, sino que se proyectan al nivel de referencia del Mundial utilizando la potencia estimada del torneo de origen.
 
-    Regularización bayesiana (Shrinkage ponderado)
-    Se incorpora un "peso fantasma" equivalente a 1.5 partidos efectivos con estadísticas promedio basadas en el Elo histórico del equipo. Este prior reduce la varianza cuando la muestra de partidos de un equipo es pequeña.
+	Eficiencia de definición (Finishing regularizado)
+	Se estima la capacidad histórica de conversión (Goles/xG). Para evitar sobreajuste, este factor se regulariza fuertemente, desplazándolo un 80% hacia el valor neutro de 1.0 (reteniendo solo el 20% de la señal original) y acotando su impacto estricto al rango [0.80, 1.20].
 
-    Efecto de localía (Anfitriones 2026)
-    Estados Unidos, México y Canadá reciben ajustes explícitos: +40 puntos de Elo efectivo, +5% de intensidad ofensiva estimada y −5% de vulnerabilidad defensiva.
+	Regularización bayesiana (Shrinkage ponderado)
+	Se incorpora un "peso fantasma" equivalente a 3.0 partidos efectivos con estadísticas promedio basadas en el Elo histórico del equipo. Este prior reduce drásticamente la varianza y estabiliza las predicciones cuando la muestra de partidos de un equipo es pequeña.
 
-    Ajuste para eliminatorias con tiempo suplementario
-    Si hay alargue, se calcula una matriz adicional correspondiente al tiempo extra. La intensidad de goles se escala al 18% (0.18) de la intensidad original de 90 minutos, simulando el declive físico y la postura conservadora típica del alargue.
+	Efecto de localía (Anfitriones 2026)
+	Estados Unidos, México y Canadá reciben un ajuste explícito y unificado en su valoración global: un boost de +80 puntos en su Elo Efectivo.
 
-    Modelo latente EM de ataque y defensa
-    Se utiliza un algoritmo Expectation-Maximization (EM) para estimar variables latentes de fortaleza ofensiva y defensiva por equipo, desacoplando el rendimiento observado de los efectos del contexto competitivo general.
+	Separación estricta de 90' vs 120' 
+	Antes del entrenamiento, se purifica la base de datos mediante una función que separa explícitamente los goles marcados a los 90 minutos de los marcados en tiempo extra. Esto garantiza que el GLM base de 90 minutos no se contamine con goles de alargues históricos.
 
-    Normalización matemática por torneo
-    La normalización del punto 5 se ejecuta escalando cada observación empírica mediante un decaimiento exponencial que relaciona la potencia del torneo observado con el del Mundial de referencia (basado en las pendientes extraídas del modelo latente EM).
+	Ajuste empírico para eliminatorias (Tiempo suplementario)
+	Si hay alargue, se calcula una matriz adicional. En lugar de asumir un factor fijo, la intensidad de goles del tiempo extra se aprende empíricamente calculando el ritmo histórico de goles en prórroga vs 90 minutos, acotando el factor final entre un 10% y un 25% del ritmo original.
 
-    Sobredispersión heterocedástica (Distribución NB2)
-    Debido a que los goles reales tienen mayor varianza que la media (sobredispersión), la distribución marginal de cada equipo es una Binomial Negativa (NB2). Además, el parámetro de dispersión (alpha) no es estático, sino heterocedástico: crece proporcionalmente a medida que aumenta la diferencia de Elo entre los equipos.
+	Modelo latente EM de ataque y defensa
+	Se utiliza un algoritmo Expectation-Maximization (EM) para estimar variables latentes de fortaleza ofensiva y defensiva por equipo, desacoplando el rendimiento observado de los efectos del contexto competitivo general.
 
-    Modelado de correlación de goles (Cópula de Frank)
-    Los goles en un partido no son estadísticamente independientes. Para solucionar esto y capturar la tendencia real a resultados como el 0-0 o 1-1, las distribuciones NB2 de ambos equipos se acoplan mediante una Cópula de Frank con un parámetro de dependencia fijo (θ = 0.38).
+	Normalización matemática por torneo
+	La normalización se ejecuta escalando cada observación empírica mediante un decaimiento exponencial que relaciona la potencia del torneo observado con el del Mundial de referencia (basado en las pendientes extraídas del modelo latente EM).
 
-    Ensamble de distribuciones (Stats + Elo)
-    La probabilidad final a los 90 minutos se obtiene de una combinación lineal de las matrices bivariadas generadas por separado (una matriz generada por Stats y otra por regresión de Elo), integrando enfoques predictivos distintos.
+	Sobredispersión heterocedástica (Distribución NB2)
+	Debido a que los goles reales tienen mayor varianza que la media (sobredispersión), la distribución marginal de cada equipo es una Binomial Negativa (NB2). Además, el parámetro de dispersión (alpha) es heterocedástico: crece proporcionalmente a medida que aumenta la diferencia de Elo entre los equipos y el factor de riesgo del partido.
 
-    Tiempo extra por convolución estocástica
-    El alargue no se modela aislado. La distribución final a los 120 minutos se obtiene mediante la convolución del espacio de resultados empatados en los 90 minutos con el espacio de resultados del tiempo extra (usando cópulas y NB2 con el factor de escala del 18%).
+	Modelado de correlación de goles (Cópula de Frank)
+	Los goles en un partido no son estadísticamente independientes. Para capturar la tendencia real a resultados como el 0-0 o 1-1, las distribuciones NB2 de ambos equipos se acoplan mediante una Cópula de Frank con un parámetro de dependencia fijo (θ = 0.38).
 
-    Modificadores Dinámicos de Forma (Recent Form Boosts)
-    El Elo utilizado no es puramente el histórico. El modelo construye un "Elo Efectivo" que inyecta el estado de forma reciente: otorga un bonus basado en el ranking de rendimiento relativo, y aplica un peso del 35% a la variación de Elo ocurrida durante el torneo actual y un 15% a la variación del año calendario previo.
+	Tiempo extra por convolución estocástica
+	El alargue no se modela aislado. La distribución final a los 120 minutos se obtiene mediante la convolución del espacio de resultados empatados en los 90 minutos con el espacio de resultados del tiempo extra.
 
-    Inyección de incertidumbre ("Prediction Risk")
-    Se incorpora una variable externa de riesgo (prediction_risk). Este factor interviene directamente aumentando la varianza (parámetro alpha de la NB2) de las distribuciones, "ensanchando" el abanico de resultados posibles en partidos catalogados como inestables o impredecibles.
+	Modificadores Dinámicos de Forma (Recent Form Boosts)
+	El modelo construye un "Elo Efectivo" que inyecta el estado de forma reciente: otorga un bonus atenuado (0.3) basado en el ranking de rendimiento relativo, y aplica un peso del 50% a la variación de Elo ocurrida durante el torneo actual y un 15% a la variación del año calendario previo.
 
-    Resolución asimétrica de Penales
-    Si tras los 120 minutos persiste el empate, no se asume un cara o cruz (50/50). El modelo otorga una ligera ventaja al equipo con mejor Elo Efectivo usando una función tangente hiperbólica (tanh). Esta ventaja tiene un tope estricto del 54% (rango 46%-54%), pero se comprime más cerca del 50% si el partido tiene un alto factor de riesgo.
+	Inyección de incertidumbre ("Prediction Risk")
+	Se incorpora una variable externa de riesgo (prediction_risk). Este factor interviene directamente aumentando la varianza (parámetro alpha de la NB2) de las distribuciones, "ensanchando" el abanico de resultados posibles en partidos catalogados como inestables o impredecibles.
 
-    Truncamiento y Renormalización Espacial
-    Por cuestiones computacionales, las matrices infinitas de resultados se truncan (hasta 10 goles por equipo en 90 min, y 5 en alargue). El código aplica una función de renormalización estricta para garantizar que, tras el truncamiento, la suma de las probabilidades bivariadas vuelva a ser exactamente 1.0, evitando fugas de masa probabilística.
+	Resolución asimétrica de Penales
+	Si tras los 120 minutos persiste el empate, no se asume un cara o cruz (50/50). El modelo otorga una ligera ventaja al equipo con mejor Elo Efectivo usando una función tangente hiperbólica (tanh). Esta ventaja tiene un tope estricto del 54% (rango 46%-54%), pero se comprime más cerca del 50% si el partido tiene un alto factor de riesgo.
 
+	Truncamiento y Renormalización Espacial
+	Por cuestiones computacionales, las matrices infinitas de resultados se truncan (hasta 10 goles por equipo en 90 min, y 5 en alargue). El código aplica una función de renormalización estricta para garantizar que, tras el truncamiento, la suma de las probabilidades bivariadas vuelva a ser exactamente 1.0, evitando fugas de masa probabilística.
 ____________________________________________________________________________
 
 fuentes_y_construccion_datos = 
