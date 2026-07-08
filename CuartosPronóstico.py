@@ -1327,4 +1327,247 @@ for i in range(len(bins)-1):
     )
 
 
+# ══════════════════════════════════════════════════════════════════════════════
+# BRIER SCORE - Evaluación de predicciones probabilísticas
+# ══════════════════════════════════════════════════════════════════════════════
 
+from sklearn.metrics import brier_score_loss
+import numpy as np
+
+def calcular_brier_score(partidos, equipo_stats):
+    """
+    Calcula el Brier Score para predicciones de 1X2 (Local/Empate/Visitante)
+    
+    Brier Score = (1/N) * Σ (p_i - o_i)²
+    donde:
+    - p_i = probabilidad predicha
+    - o_i = resultado real (1 si ocurrió, 0 si no)
+    
+    Rango: 0 (perfecto) a 2 (peor posible)
+    Normalizado: 0 a 1 (si se usa 0.5 como baseline)
+    """
+    
+    y_true = []  # Resultados reales (0=Local, 1=Empate, 2=Visitante)
+    y_pred_probs = []  # Probabilidades predichas [p_local, p_empate, p_visita]
+    
+    for p in partidos:
+        # Calcular probabilidades
+        res = calcular_probabilidades(
+            p["equipo1"],
+            p["equipo2"],
+            eliminatoria=False
+        )
+        
+        # Guardar probabilidades
+        y_pred_probs.append([
+            res["prob_local_90"],
+            res["prob_draw_90"],
+            res["prob_visita_90"]
+        ])
+        
+        # Guardar resultado real (codificado)
+        g1 = p.get("goles_90_equipo1", p["goles_equipo1"])
+        g2 = p.get("goles_90_equipo2", p["goles_equipo2"])
+        
+        if g1 > g2:
+            y_true.append(0)  # Local gana
+        elif g1 == g2:
+            y_true.append(1)  # Empate
+        else:
+            y_true.append(2)  # Visitante gana
+    
+    # Convertir a arrays numpy
+    y_true = np.array(y_true)
+    y_pred_probs = np.array(y_pred_probs)
+    
+    # Calcular Brier Score para cada clase
+    brier_local = brier_score_loss(y_true == 0, y_pred_probs[:, 0])
+    brier_empate = brier_score_loss(y_true == 1, y_pred_probs[:, 1])
+    brier_visita = brier_score_loss(y_true == 2, y_pred_probs[:, 2])
+    
+    # Brier Score total (promedio de las 3 clases)
+    brier_total = (brier_local + brier_empate + brier_visita) / 3
+    
+    # Brier Score Skill Score (comparado con predicción ingenua)
+    # Predicción ingenua: probabilidades basadas en frecuencia histórica
+    freq_local = np.mean(y_true == 0)
+    freq_empate = np.mean(y_true == 1)
+    freq_visita = np.mean(y_true == 2)
+    
+    brier_naive = (freq_local * (1 - freq_local)**2 + 
+                   freq_empate * (1 - freq_empate)**2 + 
+                   freq_visita * (1 - freq_visita)**2) / 3
+    
+    brier_skill = 1 - (brier_total / brier_naive)
+    
+    return {
+        "brier_local": brier_local,
+        "brier_empate": brier_empate,
+        "brier_visita": brier_visita,
+        "brier_total": brier_total,
+        "brier_naive": brier_naive,
+        "brier_skill": brier_skill,
+        "n_partidos": len(partidos)
+    }
+
+# ══════════════════════════════════════════════════════════════════════════════
+# EJECUTAR CÁLCULO DEL BRIER SCORE
+# ══════════════════════════════════════════════════════════════════════════════
+
+print("\n" + "═" * 90)
+print(" 📊 BRIER SCORE - EVALUACIÓN DEL MODELO")
+print("═" * 90)
+
+# Calcular Brier Score usando los partidos con ambos equipos en teams_base
+resultados_brier = calcular_brier_score(
+    partidos_con_ambos_en_teams,
+    equipos_stats
+)
+
+# Mostrar resultados
+print(f"\n📊 RESULTADOS DEL BRIER SCORE:")
+print(f"  • Partidos evaluados: {resultados_brier['n_partidos']}")
+print(f"  • Brier Score (Local):   {resultados_brier['brier_local']:.4f}")
+print(f"  • Brier Score (Empate):  {resultados_brier['brier_empate']:.4f}")
+print(f"  • Brier Score (Visita):  {resultados_brier['brier_visita']:.4f}")
+print(f"  • Brier Score (Total):   {resultados_brier['brier_total']:.4f}")
+
+print(f"\n📊 COMPARACIÓN CON PREDICCIÓN INGENUA:")
+print(f"  • Brier Score Ingenuo:   {resultados_brier['brier_naive']:.4f}")
+print(f"  • Brier Skill Score:     {resultados_brier['brier_skill']:.4f}")
+
+# Interpretación
+print(f"\n📊 INTERPRETACIÓN:")
+if resultados_brier['brier_total'] < 0.5:
+    print("  ✅ Excelente - El modelo es muy preciso")
+elif resultados_brier['brier_total'] < 0.7:
+    print("  ✅ Bueno - El modelo tiene buena precisión")
+elif resultados_brier['brier_total'] < 0.9:
+    print("  ⚠️  Regular - El modelo necesita mejorar")
+else:
+    print("  ❌ Malo - El modelo no es mejor que el azar")
+
+if resultados_brier['brier_skill'] > 0.2:
+    print(f"  ✅ El modelo es {resultados_brier['brier_skill']:.1%} mejor que una predicción ingenua")
+elif resultados_brier['brier_skill'] > 0:
+    print(f"  ⚠️  El modelo es ligeramente mejor que una predicción ingenua ({resultados_brier['brier_skill']:.1%})")
+else:
+    print(f"  ❌ El modelo es PEOR que una predicción ingenua")
+
+print("═" * 90 + "\n")
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ANÁLISIS DETALLADO POR BINS DE PROBABILIDAD
+# ══════════════════════════════════════════════════════════════════════════════
+
+def analisis_brier_por_bin(partidos, n_bins=5):
+    """
+    Analiza el Brier Score por bins de probabilidad
+    """
+    resultados = []
+    
+    for p in partidos:
+        res = calcular_probabilidades(
+            p["equipo1"],
+            p["equipo2"],
+            eliminatoria=False
+        )
+        
+        # Probabilidad máxima predicha
+        prob_max = max(res["prob_local_90"], res["prob_draw_90"], res["prob_visita_90"])
+        clase_predicha = np.argmax([
+            res["prob_local_90"],
+            res["prob_draw_90"],
+            res["prob_visita_90"]
+        ])
+        
+        # Resultado real
+        g1 = p.get("goles_90_equipo1", p["goles_equipo1"])
+        g2 = p.get("goles_90_equipo2", p["goles_equipo2"])
+        if g1 > g2:
+            clase_real = 0
+        elif g1 == g2:
+            clase_real = 1
+        else:
+            clase_real = 2
+        
+        # Acierto
+        acierto = 1 if clase_predicha == clase_real else 0
+        
+        resultados.append({
+            "prob_max": prob_max,
+            "acierto": acierto,
+            "clase_predicha": clase_predicha,
+            "clase_real": clase_real,
+            "prob_local": res["prob_local_90"],
+            "prob_empate": res["prob_draw_90"],
+            "prob_visita": res["prob_visita_90"]
+        })
+    
+    df_bins = pd.DataFrame(resultados)
+    
+    # Crear bins de probabilidad
+    df_bins['bin'] = pd.cut(df_bins['prob_max'], bins=n_bins, labels=[f"{i/n_bins:.0%}-{(i+1)/n_bins:.0%}" for i in range(n_bins)])
+    
+    print("\n" + "═" * 90)
+    print(" ANÁLISIS DE BRIER SCORE POR BINS DE PROBABILIDAD")
+    print("═" * 90)
+    
+    for bin_name, group in df_bins.groupby('bin', observed=False):
+        n = len(group)
+        accuracy = group['acierto'].mean()
+        prob_promedio = group['prob_max'].mean()
+        
+        # Brier Score para este bin
+        # Para cada predicción, calculamos (prob_predicha - acierto)²
+        brier_bin = np.mean((group['prob_max'] - group['acierto'])**2)
+        
+        print(f"\n📊 Bin: {bin_name}")
+        print(f"  • Partidos: {n}")
+        print(f"  • Probabilidad promedio: {prob_promedio:.1%}")
+        print(f"  • Precisión real: {accuracy:.1%}")
+        print(f"  • Brier Score: {brier_bin:.4f}")
+        
+        # Calibración
+        if abs(prob_promedio - accuracy) < 0.05:
+            print("  ✅ Bien calibrado")
+        elif prob_promedio > accuracy:
+            print(f"  ⚠️  Sobre-confianza: predice {prob_promedio:.1%} pero acierta {accuracy:.1%}")
+        else:
+            print(f"  ⚠️  Sub-confianza: predice {prob_promedio:.1%} pero acierta {accuracy:.1%}")
+    
+    print("═" * 90 + "\n")
+
+# Ejecutar análisis por bins
+analisis_brier_por_bin(partidos_con_ambos_en_teams)
+
+# ══════════════════════════════════════════════════════════════════════════════
+# RESUMEN COMPLETO DE MÉTRICAS (CORREGIDO)
+# ══════════════════════════════════════════════════════════════════════════════
+
+print("\n" + "═" * 90)
+print(" 📈 RESUMEN COMPLETO DE MÉTRICAS")
+print("═" * 90)
+
+aciertos = 0
+for p in partidos_con_ambos_en_teams:
+    res = calcular_probabilidades(p["equipo1"], p["equipo2"], eliminatoria=False)
+    
+    # Determinar resultado real
+    real = "local" if p["goles_equipo1"] > p["goles_equipo2"] else \
+           ("empate" if p["goles_equipo1"] == p["goles_equipo2"] else "visita")
+    
+    # Determinar predicción del modelo (la clase con mayor probabilidad)
+    probs = {"local": res["prob_local_90"], "empate": res["prob_draw_90"], "visita": res["prob_visita_90"]}
+    pred = max(probs, key=probs.get)
+    
+    if real == pred:
+        aciertos += 1
+
+accuracy = aciertos / len(partidos_con_ambos_en_teams)
+
+print(f"   • Accuracy (aciertos): {accuracy:.1%}")
+# Asegúrate de que 'resultados_brier' esté definido antes de este bloque
+print(f"   • Brier Score Total:   {resultados_brier.get('brier_total', 0):.4f}")
+print(f"   • Brier Skill Score:   {resultados_brier.get('brier_skill', 0):.4f}")
+print("═" * 90 + "\n")
