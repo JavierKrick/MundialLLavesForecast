@@ -26,30 +26,199 @@ PRIOR_PJ   = 3.0
 EPS_LOG    = 1e-6
 
 ANFITRIONES_2026 = {"México", "Mexico", "Canadá", "Canada", "Estados Unidos", "USA", "EEUU"}
-
 MAPA_EQUIPOS = {
-    "Canada": "Canadá", "Morocco": "Marruecos", "France": "Francia", "Brazil": "Brasil",
-    "Norway": "Noruega", "Mexico": "México", "England": "Inglaterra", "Spain": "España",
-    "USMNT": "Estados Unidos", "United States": "Estados Unidos", "USA": "Estados Unidos",
-    "Belgium": "Bélgica", "Switzerland": "Suiza", "Egypt": "Egipto", "South Africa": "Sudáfrica",
-    "Sweden": "Suecia", "Japan": "Japón", "Netherlands": "Países Bajos", "Croatia": "Croacia",
-    "Germany": "Alemania", "Algeria": "Argelia", "DR Congo": "RD Congo",
-    "República Democrática del Congo": "RD Congo", "Cape Verde": "Cabo Verde",
-    "Ivory Coast": "Costa de Marfil", "South Korea": "Corea del Sur", "New Zealand": "Nueva Zelanda",
-    "Saudi Arabia": "Arabia Saudita", "Czechia": "República Checa", "Turkey": "Turquía",
-    "Scotland": "Escocia", "Ireland": "Irlanda", "Northern Ireland": "Irlanda del Norte",
-    "Wales": "Gales", "Poland": "Polonia", "Denmark": "Dinamarca", "Russia": "Rusia",
-    "Ukraine": "Ucrania", "Greece": "Grecia", "North Macedonia": "Macedonia del Norte",
-    "Iceland": "Islandia", "Bosnia and Herzegovina": "Bosnia y Herzegovina", "Jordan": "Jordania",
-    "Iraq": "Irak", "Iran": "Irán", "Uzbekistan": "Uzbekistán", "Tunisia": "Túnez",
-    "Cameroon": "Camerún", "Nigeria": "Nigeria"
+    # --- América (Norte y Centro) ---
+    "Canada": "Canadá",
+    "Canadá": "Canadá",
+    "Canada National Team": "Canadá",
+    "Mexico": "México",
+    "México": "México",
+    "Mexico National Team": "México",
+    "United States": "Estados Unidos",
+    "USA": "Estados Unidos",
+    "USMNT": "Estados Unidos",
+    "Estados Unidos": "Estados Unidos",
+    "Panama": "Panamá",
+    "Panamá": "Panamá",
+    "Costa Rica": "Costa Rica",
+    "Haiti": "Haití",
+    "Haití": "Haití",
+    "Curacao": "Curazao",
+    "Curaçao": "Curazao",
+    "Curazao": "Curazao",
+    "Guatemala": "Guatemala",
+    "Honduras": "Honduras",
+    "Jamaica": "Jamaica",
+    
+    # --- América (Sur) ---
+    "Brazil": "Brasil",
+    "Brasil": "Brasil",
+    "Argentina": "Argentina",
+    "Colombia": "Colombia",
+    "Chile": "Chile",
+    "Bolivia": "Bolivia",
+    "Ecuador": "Ecuador",
+    "Uruguay": "Uruguay",
+    "Venezuela": "Venezuela",
+    "Paraguay": "Paraguay",
+    "Peru": "Perú",
+    "Perú": "Perú",
+    
+    # --- Europa ---
+    "England": "Inglaterra",
+    "Inglaterra": "Inglaterra",
+    "Spain": "España",
+    "España": "España",
+    "France": "Francia",
+    "Francia": "Francia",
+    "Belgium": "Bélgica",
+    "Bélgica": "Bélgica",
+    "Switzerland": "Suiza",
+    "Suiza": "Suiza",
+    "Sweden": "Suecia",
+    "Suecia": "Suecia",
+    "Netherlands": "Países Bajos",
+    "Países Bajos": "Países Bajos",
+    "Croatia": "Croacia",
+    "Croacia": "Croacia",
+    "Germany": "Alemania",
+    "Alemania": "Alemania",
+    "Czech Republic": "Chequia",
+    "Czechia": "Chequia",
+    "República Checa": "Chequia",
+    "Chequia": "Chequia",
+    "Turkey": "Turquía",
+    "Turquía": "Turquía",
+    "Scotland": "Escocia",
+    "Escocia": "Escocia",
+    "Ireland": "Irlanda",
+    "Irlanda": "Irlanda",
+    "Northern Ireland": "Irlanda del Norte",
+    "Irlanda del Norte": "Irlanda del Norte",
+    "Wales": "Gales",
+    "Gales": "Gales",
+    "Poland": "Polonia",
+    "Polonia": "Polonia",
+    "Denmark": "Dinamarca",
+    "Dinamarca": "Dinamarca",
+    "Russia": "Rusia",
+    "Rusia": "Rusia",
+    "Ukraine": "Ucrania",
+    "Ucrania": "Ucrania",
+    "Greece": "Grecia",
+    "Grecia": "Grecia",
+    "North Macedonia": "Macedonia del Norte",
+    "Macedonia del Norte": "Macedonia del Norte",
+    "Iceland": "Islandia",
+    "Islandia": "Islandia",
+    "Bosnia and Herzegovina": "Bosnia y Herzegovina",
+    "Bosnia/Herzeg": "Bosnia y Herzegovina",
+    "Bosnia y Herzegovina": "Bosnia y Herzegovina",
+    "Norway": "Noruega",
+    "Noruega": "Noruega",
+    "Albania": "Albania",
+    "Belarus": "Bielorrusia",
+    "Bielorrusia": "Bielorrusia",
+    "Finland": "Finlandia",
+    "Finlandia": "Finlandia",
+    "Georgia": "Georgia",
+    "Hungary": "Hungría",
+    "Hungría": "Hungría",
+    "Israel": "Israel",
+    "Italy": "Italia",
+    "Italia": "Italia",
+    "Kosovo": "Kosovo",
+    "Romania": "Rumania",
+    "Rumania": "Rumania",
+    "Serbia": "Serbia",
+    "Slovakia": "Eslovaquia",
+    "Eslovaquia": "Eslovaquia",
+    "Slovenia": "Eslovenia",
+    "Eslovenia": "Eslovenia",
+    "Portugal": "Portugal",
+    "Austria": "Austria",
+    
+    # --- África ---
+    "Morocco": "Marruecos",
+    "Marruecos": "Marruecos",
+    "Egypt": "Egipto",
+    "Egipto": "Egipto",
+    "South Africa": "Sudáfrica",
+    "Sudáfrica": "Sudáfrica",
+    "Algeria": "Argelia",
+    "Argelia": "Argelia",
+    "Tunisia": "Túnez",
+    "Túnez": "Túnez",
+    "Tunisie": "Túnez",
+    "Cape Verde": "Cabo Verde",
+    "Cabo Verde": "Cabo Verde",
+    "Ivory Coast": "Costa de Marfil",
+    "Costa de Marfil": "Costa de Marfil",
+    "Cameroon": "Camerún",
+    "Camerún": "Camerún",
+    "Nigeria": "Nigeria",
+    "DR Congo": "RD Congo",
+    "RD Congo": "RD Congo",
+    "Congo DR": "RD Congo",
+    "República Democrática del Congo": "RD Congo",
+    "Congo (DR)": "RD Congo",
+    "Congo": "RD Congo",
+    "República Democrática del Congo": "RD Congo",
+    "Burkina Faso": "Burkina Faso",
+    "Mali": "Mali",
+    "Senegal": "Senegal",
+    "Ghana": "Ghana",
+    
+    # --- Asia y Oceanía ---
+    "Japan": "Japón",
+    "Japón": "Japón",
+    "South Korea": "Corea del Sur",
+    "Corea del Sur": "Corea del Sur",
+    "Saudi Arabia": "Arabia Saudita",
+    "Arabia Saudita": "Arabia Saudita",
+    "Jordan": "Jordania",
+    "Jordania": "Jordania",
+    "Iraq": "Irak",
+    "Irak": "Irak",
+    "Iran": "Irán",
+    "Irán": "Irán",
+    "Uzbekistan": "Uzbekistán",
+    "Uzbekistán": "Uzbekistán",
+    "Qatar": "Catar",
+    "Catar": "Catar",
+    "New Zealand": "Nueva Zelanda",
+    "Nueva Zelanda": "Nueva Zelanda",
+    "Australia": "Australia",
 }
-
 MAPA_TORNEOS = {"World Cup": "World Cups"}
 
 # Normalización inicial de datos importados
 teams_base = {MAPA_EQUIPOS.get(k, k): v for k, v in teams_base.items()}
 metricas_extra = {MAPA_EQUIPOS.get(k, k): v for k, v in metricas_extra.items()}
+
+
+def mapear_partidos(lista_partidos, mapa_equipos):
+    """
+    Mapea los nombres de equipos en una lista de partidos
+    
+    Args:
+        lista_partidos: Lista de diccionarios con 'equipo1' y 'equipo2'
+        mapa_equipos: Diccionario con el mapeo de nombres
+    
+    Returns:
+        Lista con los partidos mapeados
+    """
+    partidos_mapeados = []
+    for partido in lista_partidos:
+        partido_mapeado = partido.copy()  # Copiar para no modificar el original
+        partido_mapeado["equipo1"] = mapa_equipos.get(partido["equipo1"], partido["equipo1"])
+        partido_mapeado["equipo2"] = mapa_equipos.get(partido["equipo2"], partido["equipo2"])
+        partidos_mapeados.append(partido_mapeado)
+    return partidos_mapeados
+
+# Usar la función
+partidos_mapeados = mapear_partidos(partidos_filtrados, MAPA_EQUIPOS)
+
 
 
 print("\n🏠 AJUSTE DE ELO POR LOCALÍA (ANFITRIONES 2026)")
@@ -68,6 +237,8 @@ dict_potencias = {
 # ══════════════════════════════════════════════════════════════════════════════
 # §2 PREPROCESAMIENTO: SEPARACIÓN 90' vs 120'
 # ══════════════════════════════════════════════════════════════════════════════
+
+
 
 def registrar_prorrogas(partidos, lista_prorrogas):
     """
@@ -88,22 +259,24 @@ def registrar_prorrogas(partidos, lista_prorrogas):
                 break
     return partidos_copia
 
-# Registramos los partidos que fueron a prórroga
-partidos_con_90_separados = registrar_prorrogas(partidos_filtrados, [
-    ("Argentina", "Cape Verde", 2, 2, 3, 2),
-    ("Colombia", "Switzerland", 0, 0, 0, 0),
-    ("Australia", "Egypt", 1, 1, 1, 1),
-    ("Germany", "Paraguay", 1, 1, 1, 1), 
-    ("Netherlands", "Morocco", 1, 1, 1, 1)
+# ✅ PRIMERO: Mapeamos los partidos
+partidos_mapeados = mapear_partidos(partidos_filtrados, MAPA_EQUIPOS)
+
+# ✅ SEGUNDO: Registramos los partidos que fueron a prórroga (usando los nombres ya mapeados)
+partidos_con_90_separados = registrar_prorrogas(partidos_mapeados, [
+    ("Argentina", "Cabo Verde", 2, 2, 3, 2),      # <-- Usa "Cabo Verde" (ya mapeado)
+    ("Colombia", "Suiza", 0, 0, 0, 0),            # <-- Usa "Suiza" (ya mapeado)
+    ("Australia", "Egipto", 1, 1, 1, 1),          # <-- Usa "Egipto" (ya mapeado)
+    ("Alemania", "Paraguay", 1, 1, 1, 1),         # <-- Usa "Alemania" (ya mapeado)
+    ("Países Bajos", "Marruecos", 1, 1, 1, 1)     # <-- Usa "Países Bajos" (ya mapeado)
 ])
 
-# ✅ NORMALIZACIÓN Y FILTRADO (TODO EN UN SOLO PASO)
+# ✅ TERCERO: Normalización final (por si acaso)
 partidos_normalizados = [
     {**p, "equipo1": MAPA_EQUIPOS.get(p["equipo1"], p["equipo1"]), 
           "equipo2": MAPA_EQUIPOS.get(p["equipo2"], p["equipo2"])}
     for p in partidos_con_90_separados
 ]
-
 datos_normalizados = [
     {**r, "equipo": MAPA_EQUIPOS.get(r["equipo"], r["equipo"]), 
          "torneo": MAPA_TORNEOS.get(r["torneo"], r["torneo"])}
@@ -1070,3 +1243,88 @@ for marcador, datos in sorted(
             f"{real:6.2%} | "
             f"{modelo:6.2%}"
         )
+
+# ══════════════════════════════════════════════════════════════════════════════
+# CALIBRACIÓN DE MARCADORES EXACTOS
+# (bins de 2.5% + Intervalos de confianza de Wilson)
+# ══════════════════════════════════════════════════════════════════════════════
+
+from statsmodels.stats.proportion import proportion_confint
+
+bins = np.arange(0.0, 0.275, 0.025)  # 0%, 2.5%, ..., 25%
+
+cal = {
+    i: {
+        "n": 0,
+        "hits": 0,
+        "prob_sum": 0.0
+    }
+    for i in range(len(bins)-1)
+}
+
+for p in partidos_con_ambos_en_teams:
+
+    res = calcular_probabilidades(
+        p["equipo1"],
+        p["equipo2"],
+        eliminatoria=False
+    )
+
+    resultado_real = (
+        p["goles_equipo1"],
+        p["goles_equipo2"]
+    )
+
+    for marcador, prob in res["dist_90"].items():
+
+        # ignorar probabilidades prácticamente nulas
+        if prob < 1e-12:
+            continue
+
+        bucket = np.digitize(prob, bins) - 1
+
+        # ignorar probabilidades mayores al último bin
+        if bucket < 0 or bucket >= len(bins)-1:
+            continue
+
+        cal[bucket]["n"] += 1
+        cal[bucket]["prob_sum"] += prob
+
+        if marcador == resultado_real:
+            cal[bucket]["hits"] += 1
+
+print("\n" + "="*95)
+print("CALIBRACIÓN DE MARCADORES EXACTOS")
+print("="*95)
+print("Rango        N pred.   Prob media    % ocurrió      IC95%")
+print("-"*95)
+
+for i in range(len(bins)-1):
+
+    n = cal[i]["n"]
+
+    if n == 0:
+        continue
+
+    hits = cal[i]["hits"]
+
+    prob_media = cal[i]["prob_sum"] / n
+    frecuencia = hits / n
+
+    li, ls = proportion_confint(
+        hits,
+        n,
+        alpha=0.05,
+        method="wilson"
+    )
+
+    print(
+        f"{bins[i]*100:4.1f}-{bins[i+1]*100:4.1f}%   "
+        f"{n:7d}      "
+        f"{prob_media:7.2%}      "
+        f"{frecuencia:7.2%}   "
+        f"[{li:6.2%}, {ls:6.2%}]"
+    )
+
+
+
