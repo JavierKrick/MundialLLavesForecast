@@ -85,24 +85,62 @@ datos_torneos_completos = [
     {"torneo": "CONCACAF Nations League", "equipo": "Canadá", "partidos_jugados": 4, "xg_90": 1.25, "xga_90": 0.57, "goles_favor_90": 1.50, "goles_contra_90": 0.75},
     {"torneo": "Gold Cup", "equipo": "México", "partidos_jugados": 6, "xg_90": 1.61, "xga_90": 0.73, "goles_favor_90": 1.67, "goles_contra_90": 0.50},
     {"torneo": "Gold Cup", "equipo": "Estados Unidos", "partidos_jugados": 6, "xg_90": 1.51, "xga_90": 1.05, "goles_favor_90": 2.17, "goles_contra_90": 1.00},
-#Octavos dee final
-    {"torneo": "World Cup", "equipo": "Canada", "partidos_jugados": 4, "xg_90": 2.2, "xga_90": 0.62, "goles_favor_90": 2.25, "goles_contra_90": 0.75},
-    {"torneo": "World Cup", "equipo": "Morocco", "partidos_jugados": 4, "xg_90": 1.66, "xga_90": 0.91, "goles_favor_90": 1.75, "goles_contra_90": 1.0},
-    {"torneo": "World Cup", "equipo": "Paraguay", "partidos_jugados": 4, "xg_90": 0.81, "xga_90": 2.39, "goles_favor_90": 0.75, "goles_contra_90": 1.25},
-    {"torneo": "World Cup", "equipo": "France", "partidos_jugados": 4, "xg_90": 2.21, "xga_90": 0.84, "goles_favor_90": 3.25, "goles_contra_90": 0.5},
-    {"torneo": "World Cup", "equipo": "Brazil", "partidos_jugados": 4, "xg_90": 1.77, "xga_90": 1.13, "goles_favor_90": 2.25, "goles_contra_90": 0.5},
-    {"torneo": "World Cup", "equipo": "Norway", "partidos_jugados": 4, "xg_90": 1.36, "xga_90": 1.66, "goles_favor_90": 2.5, "goles_contra_90": 2.0},
-    {"torneo": "World Cup", "equipo": "Mexico", "partidos_jugados": 4, "xg_90": 1.26, "xga_90": 0.89, "goles_favor_90": 2.0, "goles_contra_90": 0.0},
-    {"torneo": "World Cup", "equipo": "England", "partidos_jugados": 4, "xg_90": 2.13, "xga_90": 0.86, "goles_favor_90": 2.0, "goles_contra_90": 0.75},
-    {"torneo": "World Cup", "equipo": "Portugal", "partidos_jugados": 4, "xg_90": 1.49, "xga_90": 1.38, "goles_favor_90": 2.0, "goles_contra_90": 0.5},
-    {"torneo": "World Cup", "equipo": "Spain", "partidos_jugados": 4, "xg_90": 2.3, "xga_90": 0.54, "goles_favor_90": 2.0, "goles_contra_90": 0.0},
-    {"torneo": "World Cup", "equipo": "USMNT", "partidos_jugados": 4, "xg_90": 1.56, "xga_90": 0.93, "goles_favor_90": 2.5, "goles_contra_90": 1.0},
-    {"torneo": "World Cup", "equipo": "Belgium", "partidos_jugados": 4, "xg_90": 2.43, "xga_90": 1.25, "goles_favor_90": 2.25, "goles_contra_90": 1.0},
-    {"torneo": "World Cup", "equipo": "Argentina", "partidos_jugados": 4, "xg_90": 1.67, "xga_90": 0.96, "goles_favor_90": 2.75, "goles_contra_90": 0.75},
-    {"torneo": "World Cup", "equipo": "Egypt", "partidos_jugados": 4, "xg_90": 1.63, "xga_90": 1.48, "goles_favor_90": 1.5, "goles_contra_90": 1.0},
-    {"torneo": "World Cup", "equipo": "Switzerland", "partidos_jugados": 4, "xg_90": 1.66, "xga_90": 1.01, "goles_favor_90": 2.25, "goles_contra_90": 0.75},
-    {"torneo": "World Cup", "equipo": "Colombia", "partidos_jugados": 4, "xg_90": 1.64, "xga_90": 0.8, "goles_favor_90": 1.25, "goles_contra_90": 0.25},
-    
+#Actualzads a cuartos dee final:
+
+
+    {"torneo": "World Cup", "equipo": "Switzerland", "partidos_jugados": 5, "xg_90": 1.53, "xga_90": 1.09, "goles_favor_90": 1.8, "goles_contra_90": 0.6},
+    {"torneo": "World Cup", "equipo": "Austria", "partidos_jugados": 4, "xg_90": 0.98, "xga_90": 1.7, "goles_favor_90": 1.5, "goles_contra_90": 2.25},
+    {"torneo": "World Cup", "equipo": "Spain", "partidos_jugados": 5, "xg_90": 2.19, "xga_90": 0.64, "goles_favor_90": 1.8, "goles_contra_90": 0.0},
+    {"torneo": "World Cup", "equipo": "Portugal", "partidos_jugados": 5, "xg_90": 1.4, "xga_90": 1.45, "goles_favor_90": 1.6, "goles_contra_90": 0.6},
+    {"torneo": "World Cup", "equipo": "Norway", "partidos_jugados": 5, "xg_90": 1.36, "xga_90": 1.64, "goles_favor_90": 2.4, "goles_contra_90": 1.8},
+    {"torneo": "World Cup", "equipo": "Germany", "partidos_jugados": 4, "xg_90": 2.29, "xga_90": 0.95, "goles_favor_90": 2.75, "goles_contra_90": 1.25},
+    {"torneo": "World Cup", "equipo": "England", "partidos_jugados": 5, "xg_90": 1.88, "xga_90": 1.13, "goles_favor_90": 2.2, "goles_contra_90": 1.0},
+    {"torneo": "World Cup", "equipo": "Belgium", "partidos_jugados": 5, "xg_90": 2.28, "xga_90": 1.19, "goles_favor_90": 2.6, "goles_contra_90": 1.0},
+    {"torneo": "World Cup", "equipo": "Netherlands", "partidos_jugados": 4, "xg_90": 1.53, "xga_90": 1.39, "goles_favor_90": 2.75, "goles_contra_90": 1.25},
+    {"torneo": "World Cup", "equipo": "France", "partidos_jugados": 5, "xg_90": 2.15, "xga_90": 0.76, "goles_favor_90": 2.8, "goles_contra_90": 0.4},
+    {"torneo": "World Cup", "equipo": "Croatia", "partidos_jugados": 4, "xg_90": 1.16, "xga_90": 1.39, "goles_favor_90": 1.5, "goles_contra_90": 1.75},
+    {"torneo": "World Cup", "equipo": "Scotland", "partidos_jugados": 3, "xg_90": 1.06, "xga_90": 1.63, "goles_favor_90": 0.33, "goles_contra_90": 1.33},
+    {"torneo": "World Cup", "equipo": "Japan", "partidos_jugados": 4, "xg_90": 1.03, "xga_90": 1.41, "goles_favor_90": 2.0, "goles_contra_90": 1.25},
+    {"torneo": "World Cup", "equipo": "Jordan", "partidos_jugados": 3, "xg_90": 0.94, "xga_90": 1.65, "goles_favor_90": 1.0, "goles_contra_90": 2.67},
+    {"torneo": "World Cup", "equipo": "Australia", "partidos_jugados": 4, "xg_90": 1.21, "xga_90": 1.69, "goles_favor_90": 0.75, "goles_contra_90": 0.75},
+    {"torneo": "World Cup", "equipo": "Saudi Arabia", "partidos_jugados": 3, "xg_90": 0.75, "xga_90": 2.33, "goles_favor_90": 0.33, "goles_contra_90": 1.67},
+    {"torneo": "World Cup", "equipo": "Qatar", "partidos_jugados": 3, "xg_90": 0.63, "xga_90": 2.71, "goles_favor_90": 0.67, "goles_contra_90": 3.33},
+    {"torneo": "World Cup", "equipo": "Iran", "partidos_jugados": 3, "xg_90": 1.32, "xga_90": 1.97, "goles_favor_90": 1.0, "goles_contra_90": 1.0},
+    {"torneo": "World Cup", "equipo": "Uzbekistan", "partidos_jugados": 3, "xg_90": 0.74, "xga_90": 1.85, "goles_favor_90": 0.67, "goles_contra_90": 3.67},
+    {"torneo": "World Cup", "equipo": "South Korea", "partidos_jugados": 3, "xg_90": 1.35, "xga_90": 1.07, "goles_favor_90": 0.67, "goles_contra_90": 1.0},
+    {"torneo": "World Cup", "equipo": "Ivory Coast", "partidos_jugados": 4, "xg_90": 1.38, "xga_90": 1.4, "goles_favor_90": 1.25, "goles_contra_90": 1.0},
+    {"torneo": "World Cup", "equipo": "Argentina", "partidos_jugados": 5, "xg_90": 1.78, "xga_90": 0.89, "goles_favor_90": 2.8, "goles_contra_90": 1.0},
+    {"torneo": "World Cup", "equipo": "Uruguay", "partidos_jugados": 3, "xg_90": 1.82, "xga_90": 0.92, "goles_favor_90": 1.0, "goles_contra_90": 1.33},
+    {"torneo": "World Cup", "equipo": "Ecuador", "partidos_jugados": 4, "xg_90": 1.62, "xga_90": 1.33, "goles_favor_90": 0.5, "goles_contra_90": 1.0},
+    {"torneo": "World Cup", "equipo": "Ghana", "partidos_jugados": 4, "xg_90": 0.62, "xga_90": 1.62, "goles_favor_90": 0.5, "goles_contra_90": 0.75},
+    {"torneo": "World Cup", "equipo": "Brazil", "partidos_jugados": 5, "xg_90": 1.73, "xga_90": 1.18, "goles_favor_90": 2.0, "goles_contra_90": 0.8},
+    {"torneo": "World Cup", "equipo": "USA", "partidos_jugados": 5, "xg_90": 1.43, "xga_90": 1.08, "goles_favor_90": 2.2, "goles_contra_90": 1.6},
+    {"torneo": "World Cup", "equipo": "Mexico", "partidos_jugados": 5, "xg_90": 1.45, "xga_90": 0.89, "goles_favor_90": 2.0, "goles_contra_90": 0.6},
+    {"torneo": "World Cup", "equipo": "Algeria", "partidos_jugados": 4, "xg_90": 1.34, "xga_90": 1.15, "goles_favor_90": 1.25, "goles_contra_90": 2.25},
+    {"torneo": "World Cup", "equipo": "Colombia", "partidos_jugados": 5, "xg_90": 1.9, "xga_90": 0.9, "goles_favor_90": 1.0, "goles_contra_90": 0.2},
+    {"torneo": "World Cup", "equipo": "Senegal", "partidos_jugados": 4, "xg_90": 1.95, "xga_90": 1.42, "goles_favor_90": 2.5, "goles_contra_90": 2.25},
+    {"torneo": "World Cup", "equipo": "Canada", "partidos_jugados": 5, "xg_90": 2.03, "xga_90": 0.64, "goles_favor_90": 1.8, "goles_contra_90": 1.2},
+    {"torneo": "World Cup", "equipo": "South Africa", "partidos_jugados": 4, "xg_90": 1.02, "xga_90": 1.46, "goles_favor_90": 0.5, "goles_contra_90": 1.0},
+    {"torneo": "World Cup", "equipo": "Haiti", "partidos_jugados": 3, "xg_90": 1.05, "xga_90": 1.58, "goles_favor_90": 0.67, "goles_contra_90": 2.67},
+    {"torneo": "World Cup", "equipo": "Curaçao", "partidos_jugados": 3, "xg_90": 0.97, "xga_90": 2.52, "goles_favor_90": 0.33, "goles_contra_90": 3.0},
+    {"torneo": "World Cup", "equipo": "Paraguay", "partidos_jugados": 5, "xg_90": 0.73, "xga_90": 2.29, "goles_favor_90": 0.6, "goles_contra_90": 1.2},
+    {"torneo": "World Cup", "equipo": "Morocco", "partidos_jugados": 5, "xg_90": 1.48, "xga_90": 1.0, "goles_favor_90": 2.0, "goles_contra_90": 0.8},
+    {"torneo": "World Cup", "equipo": "Egypt", "partidos_jugados": 5, "xg_90": 1.42, "xga_90": 1.63, "goles_favor_90": 1.6, "goles_contra_90": 1.4},
+    {"torneo": "World Cup", "equipo": "Tunisia", "partidos_jugados": 3, "xg_90": 0.73, "xga_90": 1.76, "goles_favor_90": 0.67, "goles_contra_90": 4.0},
+    {"torneo": "World Cup", "equipo": "Panama", "partidos_jugados": 3, "xg_90": 1.18, "xga_90": 1.22, "goles_favor_90": 0.0, "goles_contra_90": 1.33},
+    {"torneo": "World Cup", "equipo": "New Zealand", "partidos_jugados": 3, "xg_90": 1.29, "xga_90": 2.4, "goles_favor_90": 1.33, "goles_contra_90": 3.33},
+    {"torneo": "World Cup", "equipo": "Cape Verde", "partidos_jugados": 4, "xg_90": 1.19, "xga_90": 2.16, "goles_favor_90": 1.0, "goles_contra_90": 1.25},
+    {"torneo": "World Cup", "equipo": "Czech Republic", "partidos_jugados": 3, "xg_90": 1.15, "xga_90": 1.52, "goles_favor_90": 0.67, "goles_contra_90": 2.0},
+    {"torneo": "World Cup", "equipo": "Sweden", "partidos_jugados": 4, "xg_90": 1.51, "xga_90": 1.54, "goles_favor_90": 1.75, "goles_contra_90": 2.5},
+    {"torneo": "World Cup", "equipo": "Turkey", "partidos_jugados": 3, "xg_90": 2.52, "xga_90": 1.25, "goles_favor_90": 1.0, "goles_contra_90": 1.67},
+    {"torneo": "World Cup", "equipo": "Bosnia and Herzegovina", "partidos_jugados": 4, "xg_90": 1.05, "xga_90": 1.36, "goles_favor_90": 1.25, "goles_contra_90": 2.0},
+    {"torneo": "World Cup", "equipo": "Iraq", "partidos_jugados": 3, "xg_90": 0.67, "xga_90": 2.3, "goles_favor_90": 0.33, "goles_contra_90": 4.0},
+    {"torneo": "World Cup", "equipo": "Congo DR", "partidos_jugados": 4, "xg_90": 1.05, "xga_90": 1.49, "goles_favor_90": 1.25, "goles_contra_90": 1.25},
+
+
+
+
+
     {"torneo":"friendly","equipo":"Sudáfrica","partidos_jugados":4,"xg_90":1.42,"xga_90":0.23,"goles_favor_90":2.00,"goles_contra_90":0.50},
     {"torneo":"friendly","equipo":"Canadá","partidos_jugados":8,"xg_90":1.14,"xga_90":0.90,"goles_favor_90":1.25,"goles_contra_90":0.38},
     {"torneo":"friendly","equipo":"Brasil","partidos_jugados":4,"xg_90":1.62,"xga_90":1.04,"goles_favor_90":2.50,"goles_contra_90":1.00},
@@ -124,45 +162,39 @@ datos_torneos_completos = [
     {"torneo":"friendly","equipo":"Paraguay","partidos_jugados":4,"xg_90":0.76,"xga_90":0.99,"goles_favor_90":1.25,"goles_contra_90":1.75}
 ]
 
-"""
 
-    {"torneo": "Gold Cup", "equipo": "Canadá", "partidos_jugados": 4, "xg_90": 1.28, "xga_90": 0.70, "goles_favor_90": 2.25, "goles_contra_90": 0.25},
-    {"torneo": "World Cup", "equipo": "Bélgica", "partidos_jugados": 3, "xg_90": 2.55, "xga_90": 0.98, "goles_favor_90": 2.00, "goles_contra_90": 0.67},
-    {"torneo": "World Cup", "equipo": "Canadá", "partidos_jugados": 3, "xg_90": 2.39, "xga_90": 0.62, "goles_favor_90": 2.67, "goles_contra_90": 1.00},
-    {"torneo": "World Cup", "equipo": "España", "partidos_jugados": 3, "xg_90": 2.16, "xga_90": 0.55, "goles_favor_90": 1.67, "goles_contra_90": 0.00},
-    {"torneo": "World Cup", "equipo": "Alemania", "partidos_jugados": 3, "xg_90": 2.14, "xga_90": 0.95, "goles_favor_90": 3.33, "goles_contra_90": 1.33},
-    {"torneo": "World Cup", "equipo": "Inglaterra", "partidos_jugados": 3, "xg_90": 2.12, "xga_90": 0.88, "goles_favor_90": 2.00, "goles_contra_90": 0.67},
-    {"torneo": "World Cup", "equipo": "Colombia", "partidos_jugados": 3, "xg_90": 2.02, "xga_90": 0.92, "goles_favor_90": 1.33, "goles_contra_90": 0.33},
-    {"torneo": "World Cup", "equipo": "Francia", "partidos_jugados": 3, "xg_90": 1.99, "xga_90": 0.80, "goles_favor_90": 3.33, "goles_contra_90": 0.67},
-    {"torneo": "World Cup", "equipo": "Senegal", "partidos_jugados": 3, "xg_90": 1.90, "xga_90": 1.20, "goles_favor_90": 2.67, "goles_contra_90": 2.00},
-    {"torneo": "World Cup", "equipo": "Ecuador", "partidos_jugados": 3, "xg_90": 1.85, "xga_90": 1.32, "goles_favor_90": 0.67, "goles_contra_90": 0.67},
-    {"torneo": "World Cup", "equipo": "Suiza", "partidos_jugados": 3, "xg_90": 1.78, "xga_90": 1.03, "goles_favor_90": 2.33, "goles_contra_90": 1.00},
-    {"torneo": "World Cup", "equipo": "Países Bajos", "partidos_jugados": 3, "xg_90": 1.78, "xga_90": 1.38, "goles_favor_90": 3.33, "goles_contra_90": 1.33},
-    {"torneo": "World Cup", "equipo": "Estados Unidos", "partidos_jugados": 3, "xg_90": 1.75, "xga_90": 0.89, "goles_favor_90": 2.67, "goles_contra_90": 1.33},
-    {"torneo": "World Cup", "equipo": "Marruecos", "partidos_jugados": 3, "xg_90": 1.75, "xga_90": 0.95, "goles_favor_90": 2.00, "goles_contra_90": 1.00},
-    {"torneo": "World Cup", "equipo": "Suecia", "partidos_jugados": 3, "xg_90": 1.69, "xga_90": 1.09, "goles_favor_90": 2.33, "goles_contra_90": 2.33},
-    {"torneo": "World Cup", "equipo": "Egipto", "partidos_jugados": 3, "xg_90": 1.63, "xga_90": 1.46, "goles_favor_90": 1.67, "goles_contra_90": 1.00},
-    {"torneo": "World Cup", "equipo": "Brasil", "partidos_jugados": 3, "xg_90": 1.59, "xga_90": 1.28, "goles_favor_90": 2.33, "goles_contra_90": 0.33},
-    {"torneo": "World Cup", "equipo": "Portugal", "partidos_jugados": 3, "xg_90": 1.48, "xga_90": 1.34, "goles_favor_90": 2.00, "goles_contra_90": 0.33},
-    {"torneo": "World Cup", "equipo": "Argelia", "partidos_jugados": 3, "xg_90": 1.47, "xga_90": 1.11, "goles_favor_90": 1.67, "goles_contra_90": 2.33},
-    {"torneo": "World Cup", "equipo": "Noruega", "partidos_jugados": 3, "xg_90": 1.38, "xga_90": 1.64, "goles_favor_90": 2.67, "goles_contra_90": 2.33},
-    {"torneo": "World Cup", "equipo": "Argentina", "partidos_jugados": 3, "xg_90": 1.32, "xga_90": 0.74, "goles_favor_90": 2.67, "goles_contra_90": 0.33},
-    {"torneo": "World Cup", "equipo": "Costa de Marfil", "partidos_jugados": 3, "xg_90": 1.27, "xga_90": 1.44, "goles_favor_90": 1.33, "goles_contra_90": 0.67},
-    {"torneo": "World Cup", "equipo": "México", "partidos_jugados": 3, "xg_90": 1.23, "xga_90": 0.88, "goles_favor_90": 2.00, "goles_contra_90": 0.00},
-    {"torneo": "World Cup", "equipo": "South Africa", "partidos_jugados": 3, "xg_90": 1.15, "xga_90": 1.40, "goles_favor_90": 0.67, "goles_contra_90": 1.00},
-    {"torneo": "World Cup", "equipo": "Japón", "partidos_jugados": 3, "xg_90": 1.14, "xga_90": 1.11, "goles_favor_90": 2.33, "goles_contra_90": 1.00},
-    {"torneo": "World Cup", "equipo": "RD Congo", "partidos_jugados": 3, "xg_90": 1.14, "xga_90": 1.26, "goles_favor_90": 1.33, "goles_contra_90": 1.00},
-    {"torneo": "World Cup", "equipo": "Austria", "partidos_jugados": 3, "xg_90": 1.13, "xga_90": 1.36, "goles_favor_90": 2.00, "goles_contra_90": 2.00},
-    {"torneo": "World Cup", "equipo": "Australia", "partidos_jugados": 3, "xg_90": 1.10, "xga_90": 1.72, "goles_favor_90": 0.67, "goles_contra_90": 0.67},
-    {"torneo": "World Cup", "equipo": "Croacia", "partidos_jugados": 3, "xg_90": 1.05, "xga_90": 1.35, "goles_favor_90": 1.67, "goles_contra_90": 1.67},
-    {"torneo": "World Cup", "equipo": "Cabo Verde", "partidos_jugados": 3, "xg_90": 1.05, "xga_90": 1.98, "goles_favor_90": 0.67, "goles_contra_90": 0.67},
-    {"torneo": "World Cup", "equipo": "Bosnia y Herzegovina", "partidos_jugados": 3, "xg_90": 1.04, "xga_90": 1.49, "goles_favor_90": 1.67, "goles_contra_90": 2.00},
-    {"torneo": "World Cup", "equipo": "Paraguay", "partidos_jugados": 3, "xg_90": 0.76, "xga_90": 2.27, "goles_favor_90": 0.67, "goles_contra_90": 1.33},
-    {"torneo": "World Cup", "equipo": "Ghana", "partidos_jugados": 3, "xg_90": 0.59, "xga_90": 1.48, "goles_favor_90": 0.67, "goles_contra_90": 0.67},
 
-"""
-# Datos reales: goles + Elo promedio por equipo
+
+
+
+
+
+
 partidos_filtrados = [
+
+    {"equipo1": "Argentina", "equipo2": "Egypt", "elo_equipo1": 2156, "elo_equipo2": 1742, "goles_equipo1": 3, "goles_equipo2": 2},
+    {"equipo1": "Colombia", "equipo2": "Switzerland", "elo_equipo1": 2003, "elo_equipo2": 1949, "goles_equipo1": 0, "goles_equipo2": 0},
+    {"equipo1": "Spain", "equipo2": "Portugal", "elo_equipo1": 2177, "elo_equipo2": 1995, "goles_equipo1": 1, "goles_equipo2": 0},
+    {"equipo1": "United States", "equipo2": "Belgium", "elo_equipo1": 1747, "elo_equipo2": 1961, "goles_equipo1": 1, "goles_equipo2": 4},
+    {"equipo1": "Mexico", "equipo2": "England", "elo_equipo1": 1913, "elo_equipo2": 2076, "goles_equipo1": 2, "goles_equipo2": 3},
+    {"equipo1": "Norway", "equipo2": "Brazil", "elo_equipo1": 1972, "elo_equipo2": 1993, "goles_equipo1": 2, "goles_equipo2": 1},
+    {"equipo1": "France", "equipo2": "Paraguay", "elo_equipo1": 2143, "elo_equipo2": 1814, "goles_equipo1": 1, "goles_equipo2": 0},
+    {"equipo1": "Morocco", "equipo2": "Canada", "elo_equipo1": 1921, "elo_equipo2": 1729, "goles_equipo1": 3, "goles_equipo2": 0},
+    {"equipo1": "Argentina", "equipo2": "Cape Verde", "elo_equipo1": 2151, "elo_equipo2": 1619, "goles_equipo1": 3, "goles_equipo2": 2},
+    {"equipo1": "Australia", "equipo2": "Egypt", "elo_equipo1": 1795, "elo_equipo2": 1747, "goles_equipo1": 1, "goles_equipo2": 1},
+    {"equipo1": "Colombia", "equipo2": "Ghana", "elo_equipo1": 2009, "elo_equipo2": 1570, "goles_equipo1": 1, "goles_equipo2": 0},
+    {"equipo1": "Portugal", "equipo2": "Croatia", "elo_equipo1": 2013, "elo_equipo2": 1882, "goles_equipo1": 2, "goles_equipo2": 1},
+    {"equipo1": "Spain", "equipo2": "Austria", "elo_equipo1": 2159, "elo_equipo2": 1821, "goles_equipo1": 3, "goles_equipo2": 0},
+    {"equipo1": "Switzerland", "equipo2": "Algeria", "elo_equipo1": 1943, "elo_equipo2": 1756, "goles_equipo1": 2, "goles_equipo2": 0},
+    {"equipo1": "Belgium", "equipo2": "Senegal", "elo_equipo1": 1910, "elo_equipo2": 1816, "goles_equipo1": 3, "goles_equipo2": 2},
+    {"equipo1": "England", "equipo2": "DR Congo", "elo_equipo1": 2046, "elo_equipo2": 1704, "goles_equipo1": 2, "goles_equipo2": 1},
+    {"equipo1": "United States", "equipo2": "Bosnia/Herzeg", "elo_equipo1": 1798, "elo_equipo2": 1605, "goles_equipo1": 2, "goles_equipo2": 0},
+    {"equipo1": "France", "equipo2": "Sweden", "elo_equipo1": 2134, "elo_equipo2": 1731, "goles_equipo1": 3, "goles_equipo2": 0},
+    {"equipo1": "Mexico", "equipo2": "Ecuador", "elo_equipo1": 1943, "elo_equipo2": 1871, "goles_equipo1": 2, "goles_equipo2": 0},
+    {"equipo1": "Norway", "equipo2": "Ivory Coast", "elo_equipo1": 1934, "elo_equipo2": 1727, "goles_equipo1": 2, "goles_equipo2": 1},
+    {"equipo1": "Brazil", "equipo2": "Japan", "elo_equipo1": 2031, "elo_equipo2": 1888, "goles_equipo1": 2, "goles_equipo2": 1},
+    {"equipo1": "Germany", "equipo2": "Paraguay", "elo_equipo1": 1907, "elo_equipo2": 1823, "goles_equipo1": 1, "goles_equipo2": 1},
+    {"equipo1": "Morocco", "equipo2": "Netherlands", "elo_equipo1": 1886, "elo_equipo2": 1971, "goles_equipo1": 1, "goles_equipo2": 1},
     {"equipo1": "Canada", "equipo2": "South Africa", "elo_equipo1": 1764, "elo_equipo2": 1559, "goles_equipo1": 1, "goles_equipo2": 0},
     {"equipo1": "Algeria", "equipo2": "Austria", "elo_equipo1": 1785, "elo_equipo2": 1836, "goles_equipo1": 3, "goles_equipo2": 3},
     {"equipo1": "Argentina", "equipo2": "Jordan", "elo_equipo1": 2148, "elo_equipo2": 1628, "goles_equipo1": 3, "goles_equipo2": 1},
@@ -369,86 +401,72 @@ partidos_filtrados = [
 
 
 
-"""
-# --- 3. BASE DE DATOS BASE (ELO Y LOCALÍA) ---
+
+# --- 1. ELO ACTUALIZADO (Todos los equipos) ---
 teams_base = {
-    "Sudáfrica": [1575, False], "Canadá": [1748, True], "Brasil": [2009, False],
-    "Japón": [1910, False], "Alemania": [1916, False], "Paraguay": [1815, False],
-    "Países Bajos": [1980, False], "Marruecos": [1877, False], "Costa de Marfil": [1743, False],
-    "Noruega": [1918, False], "Francia": [2123, False], "Suecia": [1742, False],
-    "México": [1912, True], "Ecuador": [1902, False], "Inglaterra": [2038, False],
-    "RD Congo": [1712, False], "Bélgica": [1884, False], "Senegal": [1842, False],
-    "Estados Unidos": [1781, True], "Bosnia y Herzegovina": [1622, False],
-    "España": [2144, False], "Austria": [1836, False], "Portugal": [1990, False],
-    "Croacia": [1905, False], "Suiza": [1914, False], "Argelia": [1785, False],
-    "Australia": [1800, False], "Egipto": [1742, False], "Argentina": [2148, False],
-    "Cabo Verde": [1622, False], "Colombia": [2004, False], "Ghana": [1575, False]
+    "España": [2177, False], "Argentina": [2156, False], "Francia": [2143, False], "Inglaterra": [2076, False],
+    "Colombia": [2003, False], "Portugal": [1995, False], "Brasil": [1993, False], "Noruega": [1972, False],
+    "Países Bajos": [1971, False], "Bélgica": [1961, False], "Suiza": [1949, False], "Marruecos": [1921, False],
+    "México": [1913, True], "Alemania": [1907, False], "Japón": [1888, False], "Croacia": [1882, False],
+    "Ecuador": [1871, False], "Turquía": [1852, False], "Uruguay": [1841, False], "Austria": [1821, False],
+    "Senegal": [1816, False], "Paraguay": [1814, False], "Australia": [1795, False], "Irán": [1764, False],
+    "Argelia": [1756, False], "Estados Unidos": [1747, True], "Escocia": [1745, False], "Egipto": [1742, False],
+    "Suecia": [1731, False], "Canadá": [1729, True], "Costa de Marfil": [1727, False], "Corea del Sur": [1723, False],
+    "RD Congo": [1704, False], "Chequia": [1680, False], "Panamá": [1658, False], "Uzbekistán": [1631, False],
+    "Jordania": [1628, False], "Cabo Verde": [1619, False], "Bosnia y Herzegovina": [1605, False],
+    "Arabia Saudita": [1596, False], "Ghana": [1570, False], "Túnez": [1562, False],
+    "Irak": [1561, False], "Sudáfrica": [1560, False], "Nueva Zelanda": [1534, False],
+    "Haití": [1517, False], "Curazao": [1438, False], "Catar": [1411, False]
 }
 
-# --- 3. BASE DE DATOS BASE (ELO ACTUALIZADO Y LOCALÍA) OCtavos de fInal
-teams_base = {
-    "Canadá": [1764, True],
-    "Marruecos": [1886, False],
-    "Paraguay": [1823, False],
-    "Francia": [2134, False],
-    "Brasil": [2031, False],
-    "Noruega": [1934, False],
-    "México": [1943, True],
-    "Inglaterra": [2046, False],
-    "Portugal": [2013, False],
-    "España": [2159, False],
-    "Estados Unidos": [1798, True],
-    "Bélgica": [1910, False],
-    "Argentina": [2151, False],
-    "Egipto": [1747, False],
-    "Suiza": [1943, False],
-    "Colombia": [2004, False]
-}
-
+# --- 2. MÉTRICAS EXTRA (Todos los equipos según imagen) ---
 metricas_extra = {
-    "Canadá": {"diferencia_elo_torneo": -38, "diferencia_elo_año": -4, "performance_rank": 15, "prediction_risk": 25},
-    "Marruecos": {"diferencia_elo_torneo": 46, "diferencia_elo_año": 74, "performance_rank": 13, "prediction_risk": 75},
-    "Paraguay": {"diferencia_elo_torneo": -10, "diferencia_elo_año": -2, "performance_rank": 21, "prediction_risk": 25},
-    "Francia": {"diferencia_elo_torneo": 72, "diferencia_elo_año": 79, "performance_rank": 3, "prediction_risk": 75},
-    "Brasil": {"diferencia_elo_torneo": 53, "diferencia_elo_año": 30, "performance_rank": 6, "prediction_risk": 50},
-    "Noruega": {"diferencia_elo_torneo": 12, "diferencia_elo_año": 68, "performance_rank": 10, "prediction_risk": 150},
-    "México": {"diferencia_elo_torneo": 109, "diferencia_elo_año": 106, "performance_rank": 2, "prediction_risk": 50},
-    "Inglaterra": {"diferencia_elo_torneo": 4, "diferencia_elo_año": 62, "performance_rank": 5, "prediction_risk": 125},
-    "Portugal": {"diferencia_elo_torneo": 37, "diferencia_elo_año": -17, "performance_rank": 12, "prediction_risk": 0},
-    "España": {"diferencia_elo_torneo": -13, "diferencia_elo_año": 2, "performance_rank": 7, "prediction_risk": 25},
-    "Estados Unidos": {"diferencia_elo_torneo": 51, "diferencia_elo_año": 78, "performance_rank": 9, "prediction_risk": 0},
-    "Bélgica": {"diferencia_elo_torneo": 60, "diferencia_elo_año": 63, "performance_rank": 14, "prediction_risk": 125},
-    "Argentina": {"diferencia_elo_torneo": 38, "diferencia_elo_año": 19, "performance_rank": 1, "prediction_risk": 25},
-    "Egipto": {"diferencia_elo_torneo": 0, "diferencia_elo_año": 81, "performance_rank": 19, "prediction_risk": 100},
-    "Suiza": {"diferencia_elo_torneo": 46, "diferencia_elo_año": 99, "performance_rank": 8, "prediction_risk": 75},
-    "Colombia": {"diferencia_elo_torneo": 6, "diferencia_elo_año": 54, "performance_rank": 4, "prediction_risk": 25},
+    "España": {"diferencia_elo_torneo": 20, "diferencia_elo_año": 0, "performance_rank": 3, "prediction_risk": 20},
+    "Argentina": {"diferencia_elo_torneo": 41, "diferencia_elo_año": -17, "performance_rank": 1, "prediction_risk": 60},
+    "Francia": {"diferencia_elo_torneo": 80, "diferencia_elo_año": 8, "performance_rank": 2, "prediction_risk": 60},
+    "Inglaterra": {"diferencia_elo_torneo": 52, "diferencia_elo_año": 40, "performance_rank": 4, "prediction_risk": 140},
+    "Colombia": {"diferencia_elo_torneo": 21, "diferencia_elo_año": 32, "performance_rank": 7, "prediction_risk": 20},
+    "Portugal": {"diferencia_elo_torneo": 6, "diferencia_elo_año": -41, "performance_rank": 13, "prediction_risk": 0},
+    "Brasil": {"diferencia_elo_torneo": 2, "diferencia_elo_año": -10, "performance_rank": 11, "prediction_risk": 40},
+    "Noruega": {"diferencia_elo_torneo": 58, "diferencia_elo_año": 48, "performance_rank": 6, "prediction_risk": 120},
+    "Netherlands": {"diferencia_elo_torneo": 23, "diferencia_elo_año": -27, "performance_rank": 14, "prediction_risk": 125},
+    "Belgium": {"diferencia_elo_torneo": 67, "diferencia_elo_año": 47, "performance_rank": 10, "prediction_risk": 120},
+    "Switzerland": {"diferencia_elo_torneo": 58, "diferencia_elo_año": 47, "performance_rank": 9, "prediction_risk": 60},
+    "Marruecos": {"diferencia_elo_torneo": 94, "diferencia_elo_año": 15, "performance_rank": 8, "prediction_risk": 80},
+    "Mexico": {"diferencia_elo_torneo": 38, "diferencia_elo_año": 14, "performance_rank": 5, "prediction_risk": 80},
+    "Germany": {"diferencia_elo_torneo": -25, "diferencia_elo_año": 19, "performance_rank": 16, "prediction_risk": 150},
+    "Japan": {"diferencia_elo_torneo": -18, "diferencia_elo_año": 49, "performance_rank": 20, "prediction_risk": 50},
+    "Croatia": {"diferencia_elo_torneo": -30, "diferencia_elo_año": -15, "performance_rank": 17, "prediction_risk": 100},
+    "Ecuador": {"diferencia_elo_torneo": -67, "diferencia_elo_año": 33, "performance_rank": 28, "prediction_risk": 50},
+    "Turkey": {"diferencia_elo_torneo": -58, "diferencia_elo_año": 74, "performance_rank": 36, "prediction_risk": 0},
+    "Uruguay": {"diferencia_elo_torneo": -51, "diferencia_elo_año": -9, "performance_rank": 37, "prediction_risk": 33},
+    "Austria": {"diferencia_elo_torneo": -9, "diferencia_elo_año": -15, "performance_rank": 30, "prediction_risk": 0},
+    "Senegal": {"diferencia_elo_torneo": -44, "diferencia_elo_año": 75, "performance_rank": 31, "prediction_risk": 175},
+    "Paraguay": {"diferencia_elo_torneo": -20, "diferencia_elo_año": 9, "performance_rank": 21, "prediction_risk": 20},
+    "Australia": {"diferencia_elo_torneo": 18, "diferencia_elo_año": 2, "performance_rank": 22, "prediction_risk": 25},
+    "Iran": {"diferencia_elo_torneo": -8, "diferencia_elo_año": -29, "performance_rank": 34, "prediction_risk": 67},
+    "Algeria": {"diferencia_elo_torneo": -16, "diferencia_elo_año": 68, "performance_rank": 27, "prediction_risk": 0},
+    "USA": {"diferencia_elo_torneo": 21, "diferencia_elo_año": 30, "performance_rank": 12, "prediction_risk": 20},
+    "Scotland": {"diferencia_elo_torneo": -37, "diferencia_elo_año": 65, "performance_rank": 35, "prediction_risk": 0},
+    "Egypt": {"diferencia_elo_torneo": 46, "diferencia_elo_año": 30, "performance_rank": 19, "prediction_risk": 120},
+    "Sweden": {"diferencia_elo_torneo": 19, "diferencia_elo_año": -48, "performance_rank": 26, "prediction_risk": 125},
+    "Canada": {"diferencia_elo_torneo": -59, "diferencia_elo_año": 20, "performance_rank": 15, "prediction_risk": 40},
+    "Ivory Coast": {"diferencia_elo_torneo": 32, "diferencia_elo_año": 108, "performance_rank": 18, "prediction_risk": 25},
+    "South Korea": {"diferencia_elo_torneo": -35, "diferencia_elo_año": -16, "performance_rank": 33, "prediction_risk": 33},
+    "Congo DR": {"diferencia_elo_torneo": 52, "diferencia_elo_año": 69, "performance_rank": 25, "prediction_risk": 50},
+    "Czech Republic": {"diferencia_elo_torneo": -60, "diferencia_elo_año": -9, "performance_rank": 42, "prediction_risk": 67},
+    "Panama": {"diferencia_elo_torneo": -72, "diferencia_elo_año": -31, "performance_rank": 48, "prediction_risk": 33},
+    "Uzbekistan": {"diferencia_elo_torneo": -83, "diferencia_elo_año": 7, "performance_rank": 43, "prediction_risk": 67},
+    "Jordan": {"diferencia_elo_torneo": -52, "diferencia_elo_año": 56, "performance_rank": 46, "prediction_risk": 33},
+    "Cape Verde": {"diferencia_elo_torneo": 41, "diferencia_elo_año": 60, "performance_rank": 32, "prediction_risk": 25},
+    "Bosnia and Herzegovina": {"diferencia_elo_torneo": 10, "diferencia_elo_año": 72, "performance_rank": 24, "prediction_risk": 150},
+    "Saudi Arabia": {"diferencia_elo_torneo": 20, "diferencia_elo_año": 8, "performance_rank": 38, "prediction_risk": 33},
+    "Ghana": {"diferencia_elo_torneo": 60, "diferencia_elo_año": 33, "performance_rank": 29, "prediction_risk": 25},
+    "Tunisia": {"diferencia_elo_torneo": -66, "diferencia_elo_año": 15, "performance_rank": 47, "prediction_risk": 100},
+    "Iraq": {"diferencia_elo_torneo": -46, "diferencia_elo_año": 57, "performance_rank": 44, "prediction_risk": 67},
+    "South Africa": {"diferencia_elo_torneo": 42, "diferencia_elo_año": -6, "performance_rank": 23, "prediction_risk": 0},
+    "New Zealand": {"diferencia_elo_torneo": -28, "diferencia_elo_año": -40, "performance_rank": 41, "prediction_risk": 133},
+    "Haiti": {"diferencia_elo_torneo": -31, "diferencia_elo_año": 81, "performance_rank": 45, "prediction_risk": 100},
+    "Curaçao": {"diferencia_elo_torneo": 4, "diferencia_elo_año": 38, "performance_rank": 40, "prediction_risk": 133},
+    "Qatar": {"diferencia_elo_torneo": -10, "diferencia_elo_año": 9, "performance_rank": 39, "prediction_risk": 67}
 }
-
-"""
-#Datos Cuartos de final
-
-teams_base = {
-    "Suiza": [1943, False],
-    "España": [2177, False],
-    "Noruega": [1972, False],
-    "Inglaterra": [2076, False],
-    "Bélgica": [1961, False],
-    "Francia": [2143, False],
-    "Argentina": [2156, False],
-    "Marruecos": [1921, False]
-}
-
-metricas_extra = {
-    "Suiza": {"diferencia_elo_torneo": 52, "diferencia_elo_año": 99, "performance_rank": 9, "prediction_risk": 60},
-    "España": {"diferencia_elo_torneo": 20, "diferencia_elo_año": 20, "performance_rank": 3, "prediction_risk": 20},
-    "Noruega": {"diferencia_elo_torneo": 58, "diferencia_elo_año": 106, "performance_rank": 6, "prediction_risk": 120},
-    "Inglaterra": {"diferencia_elo_torneo": 52, "diferencia_elo_año": 92, "performance_rank": 4, "prediction_risk": 140},
-    "Bélgica": {"diferencia_elo_torneo": 67, "diferencia_elo_año": 114, "performance_rank": 10, "prediction_risk": 120},
-    "Francia": {"diferencia_elo_torneo": 80, "diferencia_elo_año": 88, "performance_rank": 2, "prediction_risk": 60},
-    "Argentina": {"diferencia_elo_torneo": 41, "diferencia_elo_año": 24, "performance_rank": 1, "prediction_risk": 60},
-    "Marruecos": {"diferencia_elo_torneo": 94, "diferencia_elo_año": 109, "performance_rank": 8, "prediction_risk": 80}
-}
-
-
-
-
